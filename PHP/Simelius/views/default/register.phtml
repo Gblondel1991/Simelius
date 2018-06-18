@@ -8,20 +8,24 @@
         </nav>
     </header>
     <h1>Inscription</h1>
-    <form method postaction="register.php" class="logForm">
-
+    <form method="POST" postaction="register.php" class="logForm">
+        <?php if (!empty($errors)) : ?>
+            <?php foreach ($errors as $err) : ?>
+                <div class="alert alert-danger"><?= $err; ?></div>
+            <?php endforeach; ?>
+        <?php endif; ?>
         <input type="text" name="lastname" id="lastname" placeholder="Nom">
         <input type="text" name="fisrtname" id="firstname" placeholder="Prénom">
         <select name="profession">
-            <option value="Architecte">Architecte</option>
-            <option value="Développeur">Développeur</option>
-            <option value="Pompier">Pompier</option>
+            <?php foreach ($professionfromdb as $prof) :?>
+            <option value="<?= $prof['profession_id']?>"><?= $prof['name']?></option>
+            <?php endforeach ?>
         </select>
-        <input type="mail" name="email" id="email" placeholder="Adresse mail">
+        <input type="email" name="email" id="email" placeholder="Adresse mail">
         <input type="password" name="password" id="password" placeholder="Mot de passe">
         <input type="password" name="password2" id="password2" placeholder="Vérification du mot de passe">
         <input type="date" placeholder="Date de naissance" value="Date de naissance">
-        <button type="submit button">Je valide</button>
+        <button type="submit">Je valide</button>
     </form>
 
     <footer>

@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css?family=Merienda+One|Nanum+Gothic" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="<?= CSS_PATH . DS . 'login.css' ?>">
-    <title>Simelius, le réseau social à plus-value professionnelle</title>
 </head>
 
 <body>
@@ -17,14 +16,21 @@
         <nav class="color-blank nunito">
             <a href="#" class="simeliusName merienda color-blank">
                 <img class="logoSimelius" src="http://www.efrei.fr/wp-content/uploads/2015/07/logo-Entraide.png" alt="Logo Simelius">Simelius</a>
-            <form method postaction="login.php" class="logForm">
+            <form method="POST" class="logForm">
+                <div class="inputMargin">
                 <input class="inputLog" type="mail" name="email" id="email" placeholder="Adresse mail">
-                <input class="inputLog"type="password" name="password" id="password" placeholder="Mot de passe">
-                <button class="button connexionButton">Connexion</button>
+                <input class="inputLog" type="password" name="password" id="password" placeholder="Mot de passe">
+                </div>
+                <button type="submit" class="button connexionButton">Connexion</button>
             </form>
         </nav>
     </header>
 
+    <?php if (!empty($errors)) : ?>
+        <?php foreach ($errors as $err) : ?>
+            <div class="errLog alert alert-danger"><?= $err; ?></div>
+        <?php endforeach; ?>
+    <?php endif; ?>
     <h1 class="Simelius">Simelius</h1>
     <h2>Ensemble, soyons meilleur</h2>
     <a href="#popin1">

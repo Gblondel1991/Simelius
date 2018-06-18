@@ -13,7 +13,7 @@ define('DB_USER', 'root');
 define ('DB_PASS', '');
 
 // APP
-define('APP_NAME', 'Aston');
+define('APP_NAME', 'Simelius');
 define('THEME', 'default');
 define('THEME_PATH', VIEWS_PATH . DS . THEME);
 define('BASE_URL', '/blogger');
