@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Merienda+One|Nanum+Gothic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="<?= CSS_PATH . DS . 'login.css' ?>">
+    <title>Simelius, le réseau social à plus-value professionnelle</title>
+</head>
+
+<body>
+<div class="website-content">
+    <header>
+        <nav class="color-blank nunito">
+            <a href="#" class="simeliusName merienda color-blank">
+                <img class="logoSimelius" src="http://www.efrei.fr/wp-content/uploads/2015/07/logo-Entraide.png" alt="Logo Simelius">Simelius</a>
+            <form method postaction="login.php" class="logForm">
+                <input class="inputLog" type="mail" name="email" id="email" placeholder="Adresse mail">
+                <input class="inputLog"type="password" name="password" id="password" placeholder="Mot de passe">
+                <button class="button connexionButton">Connexion</button>
+            </form>
+        </nav>
+    </header>
+
+    <h1 class="Simelius">Simelius</h1>
+    <h2>Ensemble, soyons meilleur</h2>
+    <a href="#popin1">
+        <button class="button inscriptionButton">Rejoindre la communauté</button>
+    </a>
+
+    <div class="smart-popin" id="popin1">
+        <div class="sp-table">
+            <div class="sp-cell">
+                <div class="sp-body">
+                    <a href="#" class="sp-close">×</a>
+                    <div class="centre">
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto similique ratione, natus nesciunt eius accusantium dignissimos rerum doloribus recusandae animi architecto ex, vitae debitis odit ducimus officiis. Dolore, velit a?
+                        </p>
+
+                        <button class="submitButton nunito text-color"><a href="sign up.html"> Je rejoins la communauté</a></button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p class="text-color">Partagez la vôtre et bénéficiez de l'expérience de vos pairs pour acquérir de nouvelles compétences et progresser
+            professionnellement.
+        </p>
+    </footer>
+
+</div>
+</body>
+
+</html>
