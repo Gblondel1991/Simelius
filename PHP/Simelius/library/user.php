@@ -18,28 +18,28 @@ function authenticate(PDO $pdo, $email, $password) {
             return $user;
         }
     }
-
     return false;
 }
 
-function register (PDO $pdo, $profession, $email, $password) {
-    $sql = 'INSERT INTO user VALUES (NULL, :profession_id, :firstname, :lastname, :email, :password, :birthday, :created_at)';
+function register (PDO $pdo, $profession, $lastname, $firstname, $email, $password) {
+    $sql = 'INSERT INTO user VALUES (:user_id, :profession_id, :lastname, :firstname, :email, :password, :birthday, :created_at)';
 
     $stmt = $pdo->prepare($sql);
     $data = [
+        'user_id' => null,
         'profession_id' => $profession,
-        'lastname' => '',
-        'firtsname' => '',
+        'lastname' => $lastname,
+        'firstname' => $firstname,
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT),
         'birthday' => date('Y-m-d'),
-        'createdAt' => date('Y-m-d H:i:s'),
-        ];
+        'created_at' => date('Y-m-d H:i:s'),
+    ];
 
     if ($stmt->execute($data)) {
-        return $stmt->rowCount();
+        return 1;
     }
-    return 0;
+return 0;
 }
 
 function getProfession (PDO $pdo) {

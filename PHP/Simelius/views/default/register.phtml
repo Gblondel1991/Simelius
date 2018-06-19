@@ -15,8 +15,8 @@
             <?php endforeach; ?>
         <?php endif; ?>
         <input type="text" name="lastname" id="lastname" placeholder="Nom">
-        <input type="text" name="fisrtname" id="firstname" placeholder="Prénom">
-        <select name="profession">
+        <input type="text" name="firstname" id="firstname" placeholder="Prénom">
+        <select name="profession_id">
             <?php foreach ($professionfromdb as $prof) :?>
             <option value="<?= $prof['profession_id']?>"><?= $prof['name']?></option>
             <?php endforeach ?>
