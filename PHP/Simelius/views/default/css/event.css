@@ -1,0 +1,248 @@
+* {
+    margin:0;
+    padding:0
+}
+
+
+/* *******************************Fonts*********************************** */
+.color-blank {
+    color: antiquewhite
+}
+
+.merienda {
+    font-family: 'Merienda One', cursive;
+}
+
+
+.center-text {
+    text-align: center;
+}
+
+/* ****************************Header******************************* */
+
+header
+{   left: 0px;
+    top : 0px;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 10%;
+    margin-bottom: 1.5rem;
+    position: fixed
+}
+
+a {
+    text-decoration: none;
+}
+
+.logoSimelius {
+    width: 30px;
+}
+
+header .simeliusName {
+    font-size: 2rem;
+}
+
+.simeliusName{
+    position : fixed;
+    left: 2.5%;
+    top: 2%
+}
+
+.user:hover{
+    cursor: pointer;
+}
+
+.profile-picture {
+    width: 40px;
+    position : fixed;
+    right : 11.5%;
+    top: 2.5%
+}
+
+.username {
+    font-size: 1.1em;
+    display: inline;
+    position: fixed;
+    top: 1.4%;
+    right: 5%;
+}
+
+ul {
+    list-style: none;
+}
+
+.searchBar {
+    top: 3%;
+    left: 40%;
+    width: 20%;
+    height: 3%;
+    border-radius: 5px;
+    background: antiquewhite;
+    position: fixed;
+}
+
+/* ***********************************body******************************** */
+
+body {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    background-image: url(Background.png)
+}
+
+.page-title {
+    text-align: center;
+    color: rgba(172, 117, 184, 0.8);
+    font-size: 1.5rem;
+    margin-top: 12%;
+    margin-bottom: -4%
+}
+
+
+.main {
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 5rem;
+    padding: 0px 10px;
+}
+
+/* *******************************Sidenav****************************** */
+.sidenav {
+    background-color: rgba(100, 90, 90, 0.7);
+    border-radius: 20px;
+    overflow-x: hidden;
+    padding-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    -webkit-transition: background-color 1s;
+}
+
+.sidenav:hover {
+    background-color:  rgba(63, 56, 56, 0.7);;
+    -webkit-transition: background-color 1s;
+}
+
+.sidenavleft {
+    width: 200px;
+    position: fixed;
+    left: 1.5%;
+    top: 12%;
+    bottom: 3%;
+}
+
+.sidenavright {
+    width: 200px;
+    position: fixed;
+    right: 1.5%;
+    top: 12%;
+    bottom: 3%;
+}
+
+.sideBarContent:hover {
+    font-size: 1.2rem;
+    transition-property: font-size;
+    transition-duration: 0.6s;
+}
+
+
+/* ********************************Post****************************** */
+
+
+
+.spec {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+    /* background-color: rgba(250, 235, 215, 0.767); */
+    /* padding-top: 0.1rem; */
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    /* padding-left: 2%;
+    padding-right: 2%; */
+    height: 800px;
+}
+
+.bloc1 {
+    /* background-color: rgb(122, 255, 122); */
+    height: 150px;
+    width: 100%;
+    display: inline-flex;
+}
+
+.theme {
+    padding: 5px 0px 0px 5px;
+    /* background-color: #fff; */
+    width: 50%;
+}
+
+.theme>ul {
+    padding:15px 0px 0px 20px;
+}
+
+.speaker {
+    margin: 5px 5px 0px 0px;
+    text-align: right;
+    width: 50%;
+}
+
+.speaker>ul {
+    padding:15px 70px 0px 0px;
+}
+
+.bloc2 {
+    height: 150px;
+    width: 100%;
+}
+
+.bloc2>p {
+    text-align: center;
+    padding: 0px 5px 0px 5px;
+
+}
+
+.bloc3 {
+    /* background-color: rgb(255, 129, 249); */
+    height: 150px;
+    width: 100%;
+    display: inline-flex;
+}
+
+.map {
+    width: 40%;
+}
+
+.map>img {
+    width: 100%;
+}
+
+.info {
+    width: 60%;
+    padding: 10px 0px 0px 10px;
+
+    /* background-color: rgb(212, 80, 80); */
+}
+
+.btn {
+    padding:6px 0 6px 0;
+    font:bold 13px Arial;
+    background:#f5f5f5;
+    color:#555;
+    border-radius:2px;
+    width:100px;
+    border:1px solid #ccc;
+    box-shadow:1px 1px 3px #999;
+
+}
+
+
+/* .react {
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15%;
+    padding-right: 15%;
+    font-size: 0.9rem;
+} */

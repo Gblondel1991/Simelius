@@ -7,10 +7,10 @@ $errors = [];
 $lastname = $_POST['lastname'] ?? null;
 $firstname = $_POST['firstname'] ?? null;
 $professionfromdb = getProfession($db);
-$profession = $_POST['profession_id'] ?? null;
+$profession = $_POST['profession_id'] ?? null
 $email = $_POST['email'] ?? null;
 $password = $_POST['password'] ?? null;
-$password2 = $_POST['password2'] ?? null;
+//$password2 = $_POST['password2'] ?? null;
 $birthday = $_POST['birthday'] ?? null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Email incorrect';
     }
     if (!validPassword($password, $password2, 4, 4)) {
-        $errors[] =  'Mot de passe invalide ou ne correpond pas';
+        $errors[] =  'Mot invalide ou ne correpond pas';
     }
     if (empty($errors)) {
         // nettoyage des données.
@@ -38,4 +38,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $title = "Inscription";
 $styles = ['views/'.THEME.'/css/register.css'];
+include THEME_PATH . DS .'header.phtml' ;
 include THEME_PATH . DS . 'register.phtml';
