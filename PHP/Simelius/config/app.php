@@ -16,7 +16,7 @@ define ('DB_PASS', '');
 define('APP_NAME', 'Simelius');
 define('THEME', 'default');
 define('THEME_PATH', VIEWS_PATH . DS . THEME);
-define('BASE_URL', '/blogger');
+define('BASE_URL', '/Simelius');
 
 define('IMAGES_PATH', THEME_PATH . DS . 'images');
 define ('CSS_PATH', THEME_PATH . DS . 'css');

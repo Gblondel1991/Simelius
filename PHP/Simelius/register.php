@@ -13,7 +13,6 @@ $password = $_POST['password'] ?? null;
 $password2 = $_POST['password2'] ?? null;
 $birthday = $_POST['birthday'] ?? null;
 
-var_dump($profession);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!validEmail($email, 10, 90)) {

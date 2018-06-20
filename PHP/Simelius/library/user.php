@@ -52,3 +52,14 @@ function getProfession (PDO $pdo) {
     }
     return $profession;
 }
+
+function isUserExists(PDO $pdo, $email) {
+    $stmt = $pdo->prepare('SELECT email FROM user WHERE email=?');
+    if ($stmt->execute(array($email))) {
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($user !== false) {
+            return true;
+        }
+    }
+    return false;
+}

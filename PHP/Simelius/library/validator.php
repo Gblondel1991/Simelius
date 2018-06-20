@@ -19,11 +19,11 @@ function validEmail($email, $min = 10, $max = 80) {
     return true;
 }
 
-function validPassword($password, $confirmPassword, $min = 8, $max = 30) {
+function validPassword($password, $password2, $min = 8, $max = 30) {
     if (validMinMax($password, $min, $max)) {
         return false;
     }
-    return $password === $confirmPassword;
+    return $password === $password2;
 }
 
 function validMinMax($str, $min, $max) {

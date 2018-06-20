@@ -6,7 +6,8 @@ header
     background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
     height: 10%;
-    position: fixed
+    position: fixed;
+    max-height: 70px;
 }
 
 a {
@@ -37,7 +38,8 @@ h1 {
     font-family: 'Merienda One', cursive;
     color: antiquewhite;
     text-align: center;
-    margin-top: 5.5%
+    margin-top: 7.5%;
+    font-size: 3.5rem;
 }
 
 /* Body */
@@ -55,17 +57,16 @@ body {
 form {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1%;
+    margin-top: 3%;
     width: 40%;
     text-align: center;
-    background: rgba(250, 235, 215, 0.767);
+    background: rgba(250, 235, 215, 0.83);
     padding-bottom: 1%;
     padding-top: 2%;
     border-radius: 10px
 }
 
-input {
-    display: block;
+.form-control {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
@@ -80,7 +81,8 @@ footer {
     font-family: 'Nunito', sans-serif;
     font-size: 1rem;
     height: 8.4%;
-    padding-top: 1.1%
+    padding-top: 1.1%;
+    max-height: 70px;
 }
 
 select {
