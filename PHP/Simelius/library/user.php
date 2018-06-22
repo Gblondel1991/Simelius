@@ -53,6 +53,25 @@ function getProfession (PDO $pdo) {
     return $profession;
 }
 
+function getUserProfession (PDO $pdo, $user_id) {
+    $sql = 'SELECT 
+         u.user_id,
+          u.profession_id,
+          p.name
+          FROM profession as p
+          JOIN user as u
+          ON p.profession_id = u.profession_id
+          WHERE user_id = ?;';
+
+    $stmt =$pdo->prepare($sql);
+    $profession = [];
+    if ($stmt->execute(array($user_id))) {
+        $profession = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    return $profession;
+}
+
 function isUserExists(PDO $pdo, $email) {
     $stmt = $pdo->prepare('SELECT email FROM user WHERE email=?');
     if ($stmt->execute(array($email))) {

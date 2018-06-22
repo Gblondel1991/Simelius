@@ -67,7 +67,8 @@
 
         <div class="main">
             <h3 class="page-title merienda center-text">Nous sommes</h3>
-            <h2 class="merienda center-text">Développeurs</h2>
+
+            <h2 class="merienda center-text"><?= $profession['name'] ?>s</h2>
             <div class="newPost">
                 <textarea onkeyup="auto_grow(this)" name="write" id="write" class="write nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
                 <a href="#popin1">
@@ -119,19 +120,16 @@
                 </div>
 
             </div>
+            <?php foreach ($articles as $article) : ?>
             <div class="post nunito">
-                <h3 class="titrePost merienda">Lorem ipsum dolor sit amet consectetur
-                </h3>
+                <h3 class="titrePost merienda"><?= $article['title'] ?></h3>
                 <div class="categoryPost">(Saisons)</div>
                 <div class="poster">
-                    <img src="./images/ours.png" alt="profile picture" class="profile-picture-poster"> Jean Valjean, dév indépendant, 17 ans de métier</div>
+                    <img src="./images/ours.png" alt="profile picture" class="profile-picture-poster"> <?= $article['firstname'] ?> <?= $article['lastname']?>, dév indépendant, 17 ans de métier</div>
                 <div class="content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, adipisci harum animi error hic sapiente dolores reiciendis
-                    ipsum fugiat aspernatur quaerat aut accusamus, est dignissimos! Magnam autem inventore odit consequatur!
-                    Impedit culpa error similique expedita veniam facere consectetur, facilis fugiat at? Quidem aliquid,
-                    voluptas
+                    <?= $article['content'] ?>
                 </div>
-                <div class="date nunito">Posté le 14/06/18 à 22:14</div>
+                <div class="date nunito">Posté le <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i'); ?></div>
 
                 <div class="answers">
                     <div class="answers-eval">Réponses pertinentes : 17</div>
@@ -151,6 +149,7 @@
                     </form>
                 </div>
             </div>
+            <?php endforeach ;?>
             <div class="post nunito">
                 <h3 class="titrePost merienda">Lorem ipsum dolor sit amet consectetur.</h3>
                 <div class="categoryPost">(Dodo)</div>
