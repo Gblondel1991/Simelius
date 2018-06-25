@@ -89,7 +89,7 @@
                         <?php endif; ?>
                     </div>
                 <div class="poster">
-                    <img src="<?php $user['profile_picture']?>;" alt="image" /> <?= $article['firstname'] . ' '. $article['lastname']?>,
+                    <img src="" alt="image" /> <?= $article['firstname'] . ' '. $article['lastname']?>,
                      <?php if ($experience[0]<1) : ?>
                     <?= $experience[1]?> jours d'expérience
                     <?php elseif ($experience[0]=1) : ?>
@@ -100,27 +100,17 @@
                 </div>
                 <div class="content">
                     <?= $article['content'] ?><br>
-
                 </div>
                 <div class="date nunito">Posté le <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i'); ?></div>
 
-                <div class="answers">
-                    <div class="answers-eval">Réponses pertinentes : 17</div>
-                    <div class="react">
-                            <span>
-                                <p class="blue cursor show" id="Bouton">Répondre</p>
-                            </span>
-                        <span>
-                                <p class="cursor blue answer" href="#" >Voir</p>
-                            </span>
-                    </div>
-                </div>
-                <div id="giveAnswer">
                     <form action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
-                        <textarea name="content" onkeyup="auto_grow(this)" id="write" class="writeAnswer nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
+                        <input name="content" onkeyup="auto_grow(this)" id="write" class="writeAnswer nunito form-control" placeholder="Mon commentaire..."></input>
                         <input type="hidden" name="article_id" value="<?= $article['article_id'] ?>">
-                        <button type="submit" class="validComment nunito color-blank">Je valide</button>
                     </form>
+                <div class="answers">
+                    <span class="showAnswers">
+                         Afficher les réponses <i class="fas fa-chart-line"></i> 17
+                    </span>
                 </div>
             </div>
             <?php endforeach ;?>

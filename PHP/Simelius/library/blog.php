@@ -109,6 +109,8 @@ function addComment($pdo, $comment) {
     );
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute($dataComment);
+    if ($stmt->execute($dataComment));
+
+    return $comment;
 }
 
