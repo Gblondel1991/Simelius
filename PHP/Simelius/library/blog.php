@@ -90,3 +90,25 @@ function addArticle(PDO $pdo, $newArticle) {
     }
     return 0;
 }
+
+function addComment($pdo, $comment) {
+    $sql = 'INSERT INTO comment VALUES (
+            NULL,
+            :user_id,
+            :article_id,
+            :content,
+            NOW(),
+            NULL,
+            1
+            )';
+
+    $dataComment = array(
+        'user_id' => $comment['user_id'],
+        'article_id' => $comment['article_id'],
+        'content' => $comment['content']
+    );
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($dataComment);
+}
+

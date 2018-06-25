@@ -385,10 +385,10 @@ a:link
     display: inline-block
 }
 
-#giveAnswer {
+/*#giveAnswer {
     display: none;
 }
-
+*/
 .writeAnswer {
     position: relative;
     padding-left: 1%;

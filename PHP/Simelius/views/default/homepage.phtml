@@ -1,3 +1,6 @@
+<?php if (!isset($_SESSION['user'])) {
+    header('Location: login.php');
+} else ?>
 <!-- Deux div pour centrer verticalement la popin sur la page -->
 <div class="table-popin">
     <div class="center-popin">
@@ -113,8 +116,9 @@
                     </div>
                 </div>
                 <div id="giveAnswer">
-                    <form action="comment.php" method="POST">
-                        <textarea onkeyup="auto_grow(this)" id="write" class="writeAnswer nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
+                    <form action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
+                        <textarea name="content" onkeyup="auto_grow(this)" id="write" class="writeAnswer nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
+                        <input type="hidden" name="article_id" value="<?= $article['article_id'] ?>">
                         <button type="submit" class="validComment nunito color-blank">Je valide</button>
                     </form>
                 </div>
@@ -130,12 +134,14 @@
         element.style.height = "5px";
         element.style.height = (element.scrollHeight)+"px";
     };
+    <?php foreach ($articles as $article) : ?>
     document.querySelector("#Bouton").onclick = function() {
         document.querySelector("#giveAnswer").style.display=(window.getComputedStyle(document.querySelector('#giveAnswer')).display=='none') ? "block" : "none";
     };
     document.querySelector("#comments").onclick = function() {
         document.querySelector("#comment").style.display=(window.getComputedStyle(document.querySelector('#comment')).display=='none') ? "block" : "none";
     }
+    <?php endforeach; ?>
 
     var nbMaxChk = 3;
     var compteChk = 0;
