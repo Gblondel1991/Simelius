@@ -14,7 +14,6 @@ function getArticles ($pdo, $profession_id) {
         u.firstname,
         u.email,
         u.experience,
-        u.profile_picture,
         p.profession_id,
 		GROUP_CONCAT(c.name) as categories
         FROM article as a

@@ -34,7 +34,7 @@ function register (PDO $pdo, $profession, $lastname, $firstname, $email, $passwo
         'password' => password_hash($password, PASSWORD_BCRYPT),
         'experience' => $experience,
         'created_at' => date('Y-m-d H:i:s'),
-    ];
+        ];
 
     if ($stmt->execute($data)) {
         return 1;
@@ -60,7 +60,6 @@ function getUserInformations (PDO $pdo, $user_id) {
           u.lastname,
           u.profession_id,
           u.experience,
-          u.profile_picture,
           p.name
           FROM profession as p
           JOIN user as u

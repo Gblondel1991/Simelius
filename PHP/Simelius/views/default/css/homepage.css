@@ -113,8 +113,9 @@ h2 {
 }
 
 .main {
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
     margin-top: 5rem;
     font-size: 28px;
     padding: 0px 10px; }
@@ -272,12 +273,14 @@ a:link
 }
 
 .table-popin {
-    display:table
+    display:table;
+    width: 100%;
 }
 
 .center-popin {
     display:table-cell;
     vertical-align: middle;
+    width: 100%;
 }
 
 .smart-popin .sp-table {
