@@ -21,8 +21,8 @@ function authenticate(PDO $pdo, $email, $password) {
     return false;
 }
 
-function register (PDO $pdo, $profession, $lastname, $firstname, $email, $password) {
-    $sql = 'INSERT INTO user VALUES (:user_id, :profession_id, :lastname, :firstname, :email, :password, :birthday, :created_at)';
+function register (PDO $pdo, $profession, $lastname, $firstname, $email, $password, $experience) {
+    $sql = 'INSERT INTO user VALUES (:user_id, :profession_id, :lastname, :firstname, :email, :password, :experience, :created_at)';
 
     $stmt = $pdo->prepare($sql);
     $data = [
@@ -32,7 +32,7 @@ function register (PDO $pdo, $profession, $lastname, $firstname, $email, $passwo
         'firstname' => $firstname,
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT),
-        'birthday' => date('Y-m-d'),
+        'experience' => $experience,
         'created_at' => date('Y-m-d H:i:s'),
     ];
 
@@ -53,10 +53,14 @@ function getProfession (PDO $pdo) {
     return $profession;
 }
 
-function getUserProfession (PDO $pdo, $user_id) {
+function getUserInformations (PDO $pdo, $user_id) {
     $sql = 'SELECT 
-         u.user_id,
+          u.user_id,
+          u.firstname,
+          u.lastname,
           u.profession_id,
+          u.experience,
+          u.profile_picture,
           p.name
           FROM profession as p
           JOIN user as u
@@ -64,12 +68,12 @@ function getUserProfession (PDO $pdo, $user_id) {
           WHERE user_id = ?;';
 
     $stmt =$pdo->prepare($sql);
-    $profession = [];
+    $userInformations = [];
     if ($stmt->execute(array($user_id))) {
-        $profession = $stmt->fetch(PDO::FETCH_ASSOC);
+        $userInformations = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    return $profession;
+    return $userInformations;
 }
 
 function isUserExists(PDO $pdo, $email) {
@@ -81,4 +85,12 @@ function isUserExists(PDO $pdo, $email) {
         }
     }
     return false;
+}
+
+function experience($experienceStart) {
+    $experience = (strtotime(date('Y-m-d')) - strtotime($experienceStart))/3600/24;
+    $years = intval($experience/365);
+    $days = $experience%365;
+
+    return array($years, $days);
 }

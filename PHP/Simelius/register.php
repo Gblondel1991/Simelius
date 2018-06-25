@@ -9,9 +9,10 @@ $firstname = $_POST['firstname'] ?? null;
 $professionfromdb = getProfession($db);
 $profession = $_POST['profession_id'] ?? [];
 $email = $_POST['email'] ?? null;
+$birthday = $_POST['birthday'] ?? null;
 $password = $_POST['password'] ?? null;
 $password2 = $_POST['password2'] ?? null;
-$birthday = $_POST['birthday'] ?? null;
+$experience = $_POST['birthday'] ?? null;
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = strip_tags($email);
         $password = strip_tags($password);
 
-        if (register($db, $profession, $lastname, $firstname, $email, $password) === 1) {
+        if (register($db, $profession, $lastname, $firstname, $email, $password, $experience) === 1) {
             //echo $db->lastInsertId();
             $user = authenticate($db, $email, $password);
             if ($user) {

@@ -21,33 +21,11 @@
         </header>
 
         <div class="sidenavleft sidenav nunito">
-            <div class="sideBarContent">
-                <a href="#about" class="color-blank" class="category">Catégories</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#services" class="color-blank" class="category">CAT1</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#clients" class="color-blank" class="category">CAT2</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#contact" class="color-blank" class="category">CAT3</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#contact" class="color-blank" class="category">CAT4</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#contact" class="color-blank" class="category">CAT5</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#contact" class="color-blank" class="category">CAT6</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#contact" class="color-blank" class="category">CAT7</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#contact" class="blue">Voir plus</a>
-            </div>
+            <?php foreach ($category as $cat) : ?>
+                <div class="sideBarContent">
+                    <a href="#about" class="color-blank" class="category"><?= $cat['name']; ?></a>
+                </div>
+            <?php endforeach;?>
         </div>
 
         <div class="sidenavright sidenav nunito">
@@ -64,70 +42,63 @@
                 <a href="#contact" class="color-blank" class="event">Miaou</a>
             </div>
         </div>
-
         <div class="main">
             <h3 class="page-title merienda center-text">Nous sommes</h3>
+            <h2 class="merienda center-text"><?= $user['name'] ?>s</h2>
+            <form method="post" class="addPost">
+                <div class="newPost">
 
-            <h2 class="merienda center-text"><?= $profession['name'] ?>s</h2>
-            <div class="newPost">
-                <textarea onkeyup="auto_grow(this)" name="write" id="write" class="write nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
+                <textarea onkeyup="auto_grow(this)" name="content" class="write nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
                 <a href="#popin1">
-                    <button class="postButton nunito color-blank">Contribuer</button>
+                    <div class="postButton nunito color-blank">Contribuer</div>
                 </a>
-            </div>
-            <div class="smart-popin" id="popin1">
+                </div>
+                <div class="smart-popin" id="popin1">
                 <div class="sp-table">
                     <div class="sp-cell">
                         <div class="sp-body nunito">
                             <a href="#" class="sp-close">×</a>
-                            <input type="text" name="title" placeholder="Mon titre" class="postTitle nunito">
-                            <p>On pourra retrouver ma contribution dans les catégories...</p>
-
-                            <div>
-                                <input type="checkbox" onclick="cocher(this)" id="c1" />
-                                <label for="c1">Catégorie 1</label>
-                            </div>
-
-                            <div>
-                                <input type="checkbox" onclick="cocher(this)" id="c2" />
-                                <label for="c2">Catégorie 2</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" onclick="cocher(this)" id="c3" />
-                                <label for="c3">Catégorie 3</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" onclick="cocher(this)" id="c4" />
-                                <label for="c4">Catégorie 4</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" onclick="cocher(this)" id="c5" />
-                                <label for="c5">Catégorie 5</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" onclick="cocher(this)" id="c6" />
-                                <label for="c6">Catégorie 6</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" onclick="cocher(this)" id="c7" />
-                                <label for="c7">Catégorie 7</label>
-                            </div>
-
-                            <button class="validButton nunito color-blank">Je valide</button>
+                            <input type="text" name="title" placeholder="Mon titre" class="form-control postTitle nunito">
+                            <p class="addCategories">On pourra retrouver ma contribution dans les catégories...</p>
+                                <?php foreach ($category as $cat) : ?>
+                                    <div>
+                                        <input name="category[]" type="checkbox" value="<?= $cat['category_id']; ?>"  id="c1" />
+                                        <label for="c1"><?= $cat['name']; ?></label>
+                                    </div>
+                                <?php endforeach;?>
+                                <button type="submit" class="validButton nunito color-blank">Je valide</button>
                         </div>
 
                     </div>
                 </div>
+                </form>
 
             </div>
             <?php foreach ($articles as $article) : ?>
+            <?php $experience= experience($article['experience'])?>
             <div class="post nunito">
-                <h3 class="titrePost merienda"><?= $article['title'] ?></h3>
-                <div class="categoryPost">(Saisons)</div>
+                <h3 class="titrePost merienda"><?= $article['title'] ?></h3><br>
+                    <div class="categoryPost">
+                        <?php if(isset($article['categories'])) : ?>
+                            <?php $categories = explode(',', $article['categories']); ?>
+                            <?php foreach ($categories as $category) : ?>
+                                <span class="badge badge-pill badge-secondary"><?= $category ?></span>
+                            <?php endforeach ;?>
+                        <?php endif; ?>
+                    </div>
                 <div class="poster">
-                    <img src="./images/ours.png" alt="profile picture" class="profile-picture-poster"> <?= $article['firstname'] ?> <?= $article['lastname']?>, dév indépendant, 17 ans de métier</div>
+                    <img src="<?php $user['profile_picture']?>;" alt="image" /> <?= $article['firstname'] . ' '. $article['lastname']?>,
+                     <?php if ($experience[0]<1) : ?>
+                    <?= $experience[1]?> jours d'expérience
+                    <?php elseif ($experience[0]=1) : ?>
+                    <?= $experience[0]?> an et <?= $experience[1]?> jours d'expérience
+                    <?php else : ?>
+                    <?= $experience[0]?> ans et <?= $experience[1]?> jours d'expérience
+                    <?php endif; ?>
+                </div>
                 <div class="content">
-                    <?= $article['content'] ?>
+                    <?= $article['content'] ?><br>
+
                 </div>
                 <div class="date nunito">Posté le <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i'); ?></div>
 
@@ -150,52 +121,7 @@
                 </div>
             </div>
             <?php endforeach ;?>
-            <div class="post nunito">
-                <h3 class="titrePost merienda">Lorem ipsum dolor sit amet consectetur.</h3>
-                <div class="categoryPost">(Dodo)</div>
-                <div class="poster">
-                    <img src="./images/Pikachu.png" alt="profile picture" class="profile-picture-poster">Sade Marquis, dév expérimenté, 250 ans de métier</div>
-                <div class="content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, adipisci harum animi error hic sapiente dolores reiciendis
-                    ipsum fugiat aspernatur quaerat aut accusamus, est dignissimos! Magnam autem inventore odit consequatur!
-                    Impedit culpa error similique expedita veniam facere consectetur, facilis fugiat at? Quidem aliquid,
-                    voluptas dolor sapiente ducimus beatae numquam quae quia! Tempore harum tenetur dolor? Iure incidunt
-                    id quidem voluptate? Laborum deleniti odit, sit cum blanditiis sint sed laudantium tenetur ut provident
-                    repellendus alias ipsam, officia asperiores quidem ullam adipisci. Nihil est, itaque esse id et possimus.
-                    Adipisci, autem. Deserunt. Facere consequuntur asperiores voluptates voluptate perferendis animi
-                    earum sapiente dolorem, reprehenderit facilis commodi rerum ab sit iste molestiae ea illum cumque
-                    consectetur amet eaque minima? Nihil illo dolorem sit hic?
-                </div>
-                <div class="date nunito">Posté le 22/24/26 à 22:14</div>
 
-                <div class="answers">
-                    <div class="answers-eval">Réponses pertinentes : 17</div>
-                    <div class="react">
-                                <span>
-                                    <p class="blue cursor show" id="Bouton">Répondre</p>
-                                </span>
-                        <span>
-                                    <p class="cursor blue answer" id="comments">Voir</p>
-                                </span>
-                    </div>
-                </div>
-                <div id="giveAnswer">
-                    <form action="comment.php" method="POST">
-                        <textarea onkeyup="auto_grow(this)" id="write" class="writeAnswer nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
-                        <button type="submit" class="validComment nunito color-blank">Je valide</button>
-                    </form>
-                </div>
-            </div>
-            <div class="comment">
-                <div class="poster nunito">
-                    <img src="Pikachu.png" alt="profile picture" class="profile-picture-poster">Sade Marquis, dév expérimenté, 250 ans de métier</div>
-                <div class="content nunito">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit inventore beatae aliquid, neque officia dolores deserunt. Minima officiis veniam eveniet.
-                </div>
-                <div class="date nunito">Posté le 22/24/26 à 22:14</div>
-                <div class="pertinence nunito">Pertinence de la réponse : 7</div>
-                <div class="blue cursor like">++</div>
-            </div>
         </div>
     </div>
 </div>
