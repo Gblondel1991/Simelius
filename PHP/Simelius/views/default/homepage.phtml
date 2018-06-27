@@ -51,7 +51,7 @@
             <form method="post" class="addPost">
                 <div class="newPost">
 
-                <textarea onkeyup="auto_grow(this)" name="content" class="write nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
+                <textarea onkeyup="auto_grow(this)" name="content" class="form-control write nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
                 <a href="#popin1">
                     <div class="postButton nunito color-blank">Contribuer</div>
                 </a>
@@ -103,8 +103,8 @@
                 </div>
                 <div class="date nunito">Posté le <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i'); ?></div>
 
-                    <form action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
-                        <input name="content" onkeyup="auto_grow(this)" id="write" class="writeAnswer nunito form-control" placeholder="Mon commentaire..."></input>
+                    <form class="commentForm" name="commentForm" action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
+                        <textarea name="content" onkeyup="auto_grow(this)" id="comment" class="writeAnswer nunito form-control" placeholder="Mon commentaire..."></textarea>
                         <input type="hidden" name="article_id" value="<?= $article['article_id'] ?>">
                     </form>
                 <div class="answers">
@@ -113,6 +113,8 @@
                     </span>
                 </div>
             </div>
+
+
             <?php endforeach ;?>
 
         </div>
@@ -120,30 +122,21 @@
 </body>
 
 <script type="text/javascript">
+    $('.commentForm').find('.writeAnswer').keyup(function(e) {
+        var e = e || window.event;
+        var k = e.keyCode || e.which;
+        if (k == 13 && !e.shiftKey)  {
+            this.form.submit();
+        }
+    });
+
     function auto_grow(element) {
         element.style.height = "5px";
         element.style.height = (element.scrollHeight)+"px";
     };
-    <?php foreach ($articles as $article) : ?>
-    document.querySelector("#Bouton").onclick = function() {
-        document.querySelector("#giveAnswer").style.display=(window.getComputedStyle(document.querySelector('#giveAnswer')).display=='none') ? "block" : "none";
-    };
+
     document.querySelector("#comments").onclick = function() {
         document.querySelector("#comment").style.display=(window.getComputedStyle(document.querySelector('#comment')).display=='none') ? "block" : "none";
-    }
-    <?php endforeach; ?>
-
-    var nbMaxChk = 3;
-    var compteChk = 0;
-    function cocher(objet) {
-        if (objet.checked) {
-            if (compteChk == nbMaxChk)
-                objet.checked = false;
-            else
-                compteChk++;
-        }
-        else
-            compteChk--;
     }
 </script>
 

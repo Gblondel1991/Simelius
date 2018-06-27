@@ -12,8 +12,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $comment['user_id'] = $_SESSION['user']['user_id'];
     if (addComment($db, $comment)) {
         header('Location: homepage.php');
-        exit;
     }
 }
-
-//header('Location: homepage.php');
