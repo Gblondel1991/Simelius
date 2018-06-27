@@ -37,6 +37,32 @@ function getArticles ($pdo, $profession_id) {
     return $articles;
 }
 
+function getComments ($pdo, $article_id) {
+    $sql = 'SELECT
+            co.comment_id,
+            co.user_id,
+            co.article_id,
+            co.content,
+            co.created_at,
+            co.updated_at,
+            co.is_activated,
+            u.firstname,
+            u.lastname,
+            u.experience
+            FROM comment as co
+            JOIN user as u
+            ON co.user_id = u.user_id
+            WHERE article_id = ?;
+		;';
+
+    $stmt =$pdo->prepare($sql);
+    $comments = [];
+    if ($stmt->execute(array($article_id))) {
+        $comments = $stmt->fetchall(PDO::FETCH_ASSOC);
+    }
+    return $comments;
+}
+
 function getCategories(PDO $pdo) {
     $sql = 'SELECT category_id, name FROM category ORDER BY name;';
     $stmt = $pdo->prepare($sql);

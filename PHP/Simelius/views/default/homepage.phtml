@@ -112,6 +112,30 @@
                          Afficher les réponses <i class="fas fa-chart-line"></i> 17
                     </span>
                 </div>
+              <?php  $comments = getComments($db, $article['article_id']); ?>
+
+                <?php foreach ($comments as $comment) : ?>
+                    <?php $experience= experience($comment['experience'])?>
+
+                    <div class="comment">
+                    <div class="commentposter nunito">
+                       <?= $comment['firstname']?> <?= $comment['lastname']?>, <?php if ($experience[0]<1) : ?>
+                            <?= $experience[1]?> jours d'expérience
+                        <?php elseif ($experience[0]=1) : ?>
+                            <?= $experience[0]?> an et <?= $experience[1]?> jours d'expérience
+                        <?php else : ?>
+                            <?= $experience[0]?> ans et <?= $experience[1]?> jours d'expérience
+                        <?php endif; ?>
+                    </div>
+                    <div class="commentcontent nunito">
+                        <?= $comment['content'] ?>
+                    </div>
+                    <div class="date">
+                    <span class="date nunito">Posté le <?= (new DateTime($comment['created_at']))->format('d/m/Y à H:i'); ?></span>
+                    <span class="note float-right">++ <i class="fas fa-chart-line"></i> 8</span>
+                    </div>
+                </div>
+                <?php endforeach; ?>
             </div>
 
 
