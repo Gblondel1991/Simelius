@@ -26,7 +26,9 @@
         <div class="sidenavleft sidenav nunito">
             <?php foreach ($category as $cat) : ?>
                 <div class="sideBarContent">
-                    <a href="#about" class="color-blank" class="category"><?= $cat['name']; ?></a>
+                    <a href="#about" class="color-blank" class="category">
+                        <?= $cat['name']; ?>
+                    </a>
                 </div>
             <?php endforeach;?>
         </div>
@@ -47,121 +49,141 @@
         </div>
         <div class="main">
             <h3 class="page-title merienda center-text">Nous sommes</h3>
-            <h2 class="merienda center-text"><?= $user['name'] ?>s</h2>
+            <h2 class="merienda center-text">
+                <?= $user['name'] ?>s</h2>
             <form method="post" class="addPost">
                 <div class="newPost">
 
-                <textarea onkeyup="auto_grow(this)" name="content" class="form-control write nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
-                <a href="#popin1">
-                    <div class="postButton nunito color-blank">Contribuer</div>
-                </a>
+                    <textarea onkeyup="auto_grow(this)" name="content" class="form-control write nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
+                    <a href="#popin1">
+                        <div class="postButton nunito color-blank">Contribuer</div>
+                    </a>
                 </div>
                 <div class="smart-popin" id="popin1">
-                <div class="sp-table">
-                    <div class="sp-cell">
-                        <div class="sp-body nunito">
-                            <a href="#" class="sp-close">×</a>
-                            <input type="text" name="title" placeholder="Mon titre" class="form-control postTitle nunito">
-                            <p class="addCategories">On pourra retrouver ma contribution dans les catégories...</p>
+                    <div class="sp-table">
+                        <div class="sp-cell">
+                            <div class="sp-body nunito">
+                                <a href="#" class="sp-close">×</a>
+                                <input type="text" name="title" placeholder="Mon titre" class="form-control postTitle nunito">
+                                <p class="addCategories">On pourra retrouver ma contribution dans les catégories...</p>
                                 <?php foreach ($category as $cat) : ?>
                                     <div>
-                                        <input name="category[]" type="checkbox" value="<?= $cat['category_id']; ?>"  id="c1" />
-                                        <label for="c1"><?= $cat['name']; ?></label>
+                                        <input name="category[]" type="checkbox" value="<?= $cat['category_id']; ?>" id="c1" />
+                                        <label for="c1">
+                                            <?= $cat['name']; ?>
+                                        </label>
                                     </div>
                                 <?php endforeach;?>
                                 <button type="submit" class="validButton nunito color-blank">Je valide</button>
-                        </div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
-                </form>
-            </div>
-            <?php foreach ($articles as $article) : ?>
+            </form>
+        </div>
+        <?php foreach ($articles as $article) : ?>
             <?php $experience= experience($article['experience'])?>
             <div class="post nunito">
-                <h3 class="titrePost merienda"><?= $article['title'] ?></h3><br>
-                    <div class="categoryPost">
-                        <?php if(isset($article['categories'])) : ?>
-                            <?php $categories = explode(',', $article['categories']); ?>
-                            <?php foreach ($categories as $category) : ?>
-                                <span class="badge badge-pill badge-secondary"><?= $category ?></span>
-                            <?php endforeach ;?>
-                        <?php endif; ?>
-                    </div>
+                <h3 class="titrePost merienda">
+                    <?= $article['title'] ?>
+                </h3>
+                <br>
+                <div class="categoryPost">
+                    <?php if(isset($article['categories'])) : ?>
+                        <?php $categories = explode(',', $article['categories']); ?>
+                        <?php foreach ($categories as $category) : ?>
+                            <span class="badge badge-pill badge-secondary">
+                        <?= $category ?>
+                    </span>
+                        <?php endforeach ;?>
+                    <?php endif; ?>
+                </div>
                 <div class="poster">
-                    <img src="" alt="image" /> <?= $article['firstname'] . ' '. $article['lastname']?>,
-                     <?php if ($experience[0]<1) : ?>
-                    <?= $experience[1]?> jours d'expérience
+                    <img src="" alt="image" />
+                    <?= $article['firstname'] . ' '. $article['lastname']?>,
+                    <?php if ($experience[0]<1) : ?>
+                        <?= $experience[1]?> jours d'expérience
                     <?php elseif ($experience[0]=1) : ?>
-                    <?= $experience[0]?> an et <?= $experience[1]?> jours d'expérience
+                        <?= $experience[0]?> an et
+                        <?= $experience[1]?> jours d'expérience
                     <?php else : ?>
-                    <?= $experience[0]?> ans et <?= $experience[1]?> jours d'expérience
+                        <?= $experience[0]?> ans et
+                        <?= $experience[1]?> jours d'expérience
                     <?php endif; ?>
                 </div>
                 <div class="content">
-                    <?= $article['content'] ?><br>
+                    <?= $article['content'] ?>
+                    <br>
                 </div>
-                <div class="date nunito">Posté le <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i'); ?></div>
+                <div class="date nunito">Posté le
+                    <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i'); ?>
+                </div>
 
-                    <form class="commentForm" name="commentForm" action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
-                        <textarea name="content" onkeyup="auto_grow(this)" id="comment" class="writeAnswer nunito form-control" placeholder="Mon commentaire..."></textarea>
-                        <input type="hidden" name="article_id" value="<?= $article['article_id'] ?>">
-                    </form>
+                <form class="commentForm" name="commentForm" action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
+                    <textarea name="content" onkeyup="auto_grow(this)" id="comment" class="writeAnswer nunito form-control" placeholder="Mon commentaire..."></textarea>
+                    <input type="hidden" name="article_id" value="<?= $article['article_id'] ?>">
+                </form>
                 <div class="answers">
-                    <span class="showAnswers">
-                         Afficher les réponses <i class="fas fa-chart-line"></i> 17
-                    </span>
+                    <a class="showAnswers" data-toggle="collapse" id="showAnswers<?= $article['article_id']?>">
+                        Afficher les réponses
+                        <i class="fas fa-chart-line"></i> 17
+                    </a>
                 </div>
-              <?php  $comments = getComments($db, $article['article_id']); ?>
+                <?php  $comments = getComments($db, $article['article_id']); ?>
+                    <?php foreach ($comments as $comment) : ?>
+                        <?php $experience= experience($comment['experience'])?>
 
-                <?php foreach ($comments as $comment) : ?>
-                    <?php $experience= experience($comment['experience'])?>
-
-                    <div class="comment">
-                    <div class="commentposter nunito">
-                       <?= $comment['firstname']?> <?= $comment['lastname']?>, <?php if ($experience[0]<1) : ?>
-                            <?= $experience[1]?> jours d'expérience
-                        <?php elseif ($experience[0]=1) : ?>
-                            <?= $experience[0]?> an et <?= $experience[1]?> jours d'expérience
-                        <?php else : ?>
-                            <?= $experience[0]?> ans et <?= $experience[1]?> jours d'expérience
-                        <?php endif; ?>
-                    </div>
-                    <div class="commentcontent nunito">
-                        <?= $comment['content'] ?>
-                    </div>
-                    <div class="date">
-                    <span class="date nunito">Posté le <?= (new DateTime($comment['created_at']))->format('d/m/Y à H:i'); ?></span>
-                    <span class="note float-right">++ <i class="fas fa-chart-line"></i> 8</span>
-                    </div>
+                <div class="showComments">
+                        <div class="comments">
+                            <div class="commentposter nunito">
+                                <?= $comment['firstname']?>
+                                <?= $comment['lastname']?>,
+                                <?php if ($experience[0]<1) : ?>
+                                    <?= $experience[1]?> jours d'expérience
+                                <?php elseif ($experience[0]=1) : ?>
+                                    <?= $experience[0]?> an et
+                                    <?= $experience[1]?> jours d'expérience
+                                <?php else : ?>
+                                    <?= $experience[0]?> ans et
+                                    <?= $experience[1]?> jours d'expérience
+                                <?php endif; ?>
+                            </div>
+                            <div class="commentcontent nunito">
+                                <?= $comment['content'] ?>
+                            </div>
+                            <div class="date">
+                            <span class="date nunito">Posté le
+                                <?= (new DateTime($comment['created_at']))->format('d/m/Y à H:i'); ?>
+                            </span>
+                                <span class="note float-right">++
+                                <i class="fas fa-chart-line"></i> 8</span>
+                            </div>
+                        </div>
                 </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
             </div>
 
 
-            <?php endforeach ;?>
+        <?php endforeach ;?>
 
-        </div>
     </div>
+</div>
 </body>
 
 <script type="text/javascript">
-    $('.commentForm').find('.writeAnswer').keyup(function(e) {
+    $('.commentForm').find('.writeAnswer').keyup(function (e) {
         var e = e || window.event;
         var k = e.keyCode || e.which;
-        if (k == 13 && !e.shiftKey)  {
+        if (k == 13 && !e.shiftKey) {
             this.form.submit();
         }
     });
 
     function auto_grow(element) {
         element.style.height = "5px";
-        element.style.height = (element.scrollHeight)+"px";
+        element.style.height = (element.scrollHeight) + "px";
     };
 
-    document.querySelector("#comments").onclick = function() {
-        document.querySelector("#comment").style.display=(window.getComputedStyle(document.querySelector('#comment')).display=='none') ? "block" : "none";
-    }
 </script>
 
 </html>
