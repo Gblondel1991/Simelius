@@ -1,3 +1,30 @@
+
+Skip to content
+
+Pull requests
+Issues
+Marketplace
+Explore
+
+@Gblondel1991
+
+0
+0
+
+0
+
+Gblondel1991/Simelius
+Code
+Issues 0
+Pull requests 0
+Projects 0
+Wiki
+Insights
+Settings
+Simelius/PHP/Simelius/views/default/homepage.phtml
+7b151a4 a day ago
+@Gblondel1991 Gblondel1991 collapse bootstrap
+189 lines (175 sloc) 8.55 KB
 <?php if (!isset($_SESSION['user'])) {
     header('Location: login.php');
 } else ?>
@@ -92,9 +119,8 @@
                     <?php if(isset($article['categories'])) : ?>
                         <?php $categories = explode(',', $article['categories']); ?>
                         <?php foreach ($categories as $category) : ?>
-                            <span class="badge badge-pill badge-secondary">
-                        <?= $category ?>
-                    </span>
+
+                            <button class="category"><?= $category ?></button>
                         <?php endforeach ;?>
                     <?php endif; ?>
                 </div>
@@ -123,17 +149,12 @@
                     <textarea name="content" onkeyup="auto_grow(this)" id="comment" class="writeAnswer nunito form-control" placeholder="Mon commentaire..."></textarea>
                     <input type="hidden" name="article_id" value="<?= $article['article_id'] ?>">
                 </form>
-                <div class="answers">
-                    <a class="showAnswers" data-toggle="collapse" id="showAnswers<?= $article['article_id']?>">
-                        Afficher les réponses
-                        <i class="fas fa-chart-line"></i> 17
-                    </a>
-                </div>
-                <?php  $comments = getComments($db, $article['article_id']); ?>
-                    <?php foreach ($comments as $comment) : ?>
-                        <?php $experience= experience($comment['experience'])?>
 
-                <div class="showComments">
+                <?php  $comments = getComments($db, $article['article_id']); ?>
+                <?php foreach ($comments as $comment) : ?>
+                    <?php $experience= experience($comment['experience'])?>
+
+                    <div class="showComments showComments<?= $article['article_id']?>">
                         <div class="comments">
                             <div class="commentposter nunito">
                                 <?= $comment['firstname']?>
@@ -159,11 +180,21 @@
                                 <i class="fas fa-chart-line"></i> 8</span>
                             </div>
                         </div>
+                    </div>
+                <?php endforeach; ?>
+                <div class="answers">
+                    <span class="showAnswers" id="showAnswers<?= $article['article_id']?>">
+                        Afficher les réponses
+                        <span class="pertinence" data-toggle="tooltip" data-placement="right" title="Taux de pertinence"><i class="fas fa-chart-line"></i> 17</span>
+                    </span>
                 </div>
-                    <?php endforeach; ?>
             </div>
 
-
+<script>
+            $('#showAnswers<?= $article['article_id']?>').click(function(){
+            $('.showComments<?= $article['article_id']?>').slideToggle(100)
+            });
+</script>
         <?php endforeach ;?>
 
     </div>
@@ -178,7 +209,6 @@
             this.form.submit();
         }
     });
-
     function auto_grow(element) {
         element.style.height = "5px";
         element.style.height = (element.scrollHeight) + "px";

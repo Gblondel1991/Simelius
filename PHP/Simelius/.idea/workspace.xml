@@ -14,8 +14,8 @@
       <file leaf-file-name="blog.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/library/blog.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="980">
-              <caret line="75" selection-start-line="75" selection-end-line="75" />
+            <state relative-caret-position="378">
+              <caret line="47" column="28" lean-forward="true" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -32,8 +32,8 @@
       <file leaf-file-name="homepage.phtml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/default/homepage.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="135" column="42" lean-forward="true" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
+            <state relative-caret-position="337">
+              <caret line="190" column="18" lean-forward="true" selection-start-line="190" selection-start-column="18" selection-end-line="190" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -41,8 +41,8 @@
       <file leaf-file-name="homepage.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/default/css/homepage.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="450" selection-start-line="450" selection-end-line="450" />
+            <state relative-caret-position="191">
+              <caret line="482" column="1" selection-start-line="482" selection-start-column="1" selection-end-line="482" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -51,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/library/user.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1120">
-              <caret line="56" column="19" lean-forward="true" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
+              <caret line="56" column="19" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -68,18 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>1</find>
-      <find>img</find>
-      <find>butt</find>
-      <find>inp</find>
-      <find>aston</find>
-      <find>print</find>
-      <find>popin</find>
-      <find>form</find>
-      <find>butto</find>
-      <find>h3</find>
-      <find>button</find>
-      <find>post</find>
       <find>postT</find>
       <find>main</find>
       <find>table</find>
@@ -89,15 +77,27 @@
       <find>answers</find>
       <find>give</find>
       <find>text</find>
-      <find>write</find>
       <find>writea</find>
-      <find>textare</find>
-      <find>pertinence</find>
       <find>showA</find>
       <find>expe</find>
       <find>commentF</find>
       <find>comment</find>
       <find>show</find>
+      <find>display</find>
+      <find>texta</find>
+      <find>area</find>
+      <find>showAns</find>
+      <find>showc</find>
+      <find>showan</find>
+      <find>category</find>
+      <find>h</find>
+      <find>comments</find>
+      <find>postB</find>
+      <find>write</find>
+      <find>textare</find>
+      <find>postti</find>
+      <find>input</find>
+      <find>pertinence</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -129,6 +129,7 @@
         <option value="$PROJECT_DIR$/ajax/addComment.php" />
         <option value="$PROJECT_DIR$/comment.php" />
         <option value="$PROJECT_DIR$/homepage.php" />
+        <option value="$USER_HOME$/Desktop/Simelius/PHP/Simelius/views/default/homepage.phtml" />
         <option value="$PROJECT_DIR$/library/blog.php" />
         <option value="$PROJECT_DIR$/views/default/css/homepage.css" />
         <option value="$PROJECT_DIR$/views/default/homepage.phtml" />
@@ -151,8 +152,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="229" />
     <option name="y" value="147" />
-    <option name="width" value="1378" />
-    <option name="height" value="733" />
+    <option name="width" value="1479" />
+    <option name="height" value="841" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -199,7 +200,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/symfony" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -262,17 +263,19 @@
       <workItem from="1530000528430" duration="9775000" />
       <workItem from="1530083872041" duration="3643000" />
       <workItem from="1530173265438" duration="4891000" />
+      <workItem from="1530255533387" duration="6228000" />
+      <workItem from="1530264456640" duration="10051000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147121000" />
+    <option name="totallyTimeSpent" value="163400000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="229" y="147" width="1378" height="733" extended-state="0" />
+    <frame x="229" y="147" width="1479" height="841" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16813509" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15652768" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -326,13 +329,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/default/homepage.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2480">
-          <caret line="124" column="60" lean-forward="true" selection-start-line="124" selection-start-column="60" selection-end-line="124" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/default/login.phtml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -561,20 +557,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/library/blog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="980">
-          <caret line="75" selection-start-line="75" selection-end-line="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/homepage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/event.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -599,21 +581,42 @@
     <entry file="file://$PROJECT_DIR$/library/user.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1120">
-          <caret line="56" column="19" lean-forward="true" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
+          <caret line="56" column="19" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/Simelius/PHP/Simelius/views/default/homepage.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="137" column="35" selection-end-line="187" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/library/blog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="47" column="28" lean-forward="true" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/homepage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/default/css/homepage.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="450" selection-start-line="450" selection-end-line="450" />
+        <state relative-caret-position="191">
+          <caret line="482" column="1" selection-start-line="482" selection-start-column="1" selection-end-line="482" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/default/homepage.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="135" column="42" lean-forward="true" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="42" />
+        <state relative-caret-position="337">
+          <caret line="190" column="18" lean-forward="true" selection-start-line="190" selection-start-column="18" selection-end-line="190" selection-end-column="18" />
         </state>
       </provider>
     </entry>

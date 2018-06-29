@@ -52,7 +52,8 @@ function getComments ($pdo, $article_id) {
             FROM comment as co
             JOIN user as u
             ON co.user_id = u.user_id
-            WHERE article_id = ?;
+            WHERE article_id = ?
+            ORDER BY created_at DESC;
 		;';
 
     $stmt =$pdo->prepare($sql);
