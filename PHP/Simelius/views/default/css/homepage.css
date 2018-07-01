@@ -168,6 +168,10 @@ h2 {
     transition-duration: 0.6s;
 }
 
+.categoryFilter:hover {
+    cursor: pointer;
+}
+
 
 /* ********************************Post****************************** */
 .write {
@@ -482,11 +486,25 @@ textarea {
     font-size: 0.9rem;
 }
 
-.note{
-    color: darkblue;
+.relevance {
+    font-size: 0.7rem;
+    font-weight: bold;
+    background: rgba(172, 117, 184, 0.8);
+    color: white;
+    border-radius : 20px;
+    border : none;
+    display: inline;
 }
 
-.note:hover {
+.noteComment {
+    display: inline-block;
+}
+
+.note{
+    color: rgb(160, 93, 175)
+}
+
+.relevance:hover {
     cursor: pointer;
 }
 
@@ -497,4 +515,66 @@ textarea {
 
 .like{
     margin-bottom: 0.8%
+}
+
+.test + .tooltip > .tooltip-inner {
+    background-color: #73AD21;
+    color: #FFFFFF;
+    border: 1px solid green;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.test + .tooltip.right > .tooltip-arrow {
+    border-right: 5px solid black;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+[data-tooltip] {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+    position: absolute;
+    left: 450%;
+    top : -31%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: 160px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #000;
+    background-color: hsla(0, 0%, 20%, 0.9);
+    color: #fff;
+    content: attr(data-tooltip);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    visibility: visible;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
 }

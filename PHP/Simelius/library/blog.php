@@ -141,3 +141,66 @@ function addComment($pdo, $comment) {
     return $comment;
 }
 
+function getCommentRelevance($pdo, $comment_id) {
+    $sql = 'SELECT count(*) FROM revelant_answer WHERE comment_id = ?';
+
+    $stmt =$pdo->prepare($sql);
+    $commentRelevance = [];
+    if ($stmt->execute(array($comment_id))) {
+        $commentRelevance = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $commentRelevance;
+}
+
+function getArticleRelevance($pdo, $article_id) {
+    $sql = 'SELECT count(*) FROM revelant_answer as ra JOIN comment as c ON ra.comment_id = c.comment_id WHERE article_id = ?;';
+
+    $stmt=$pdo->prepare($sql);
+    $articleRelevance = [];
+    if ($stmt->execute(array($article_id))) {
+        $articleRelevance = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $articleRelevance;
+}
+
+function getRelevance($pdo, $comment_id) {
+    $sql="SELECT * FROM revelant_answer WHERE comment_id = ?";
+    $stmt =$pdo->prepare($sql);
+    $relevance = [];
+    if ($stmt->execute(array($comment_id))) {
+        $relevance = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $relevance;
+}
+
+function addRelevance($pdo, $relevance) {
+    $sql = 'INSERT INTO revelant_answer VALUES (
+            :user_id,
+            :comment_id
+)';
+
+    $data = array(
+        'user_id' => $relevance['user_id'],
+        'comment_id' => $relevance['comment_id'],
+    );
+
+    $stmt = $pdo->prepare($sql);
+    if ($stmt->execute($data)) {
+    }
+
+    return $relevance;
+}
+
+function deleteRelevance($pdo, $relevance)
+{
+    $sql = 'DELETE FROM revelant_answer WHERE user_id = :user_id AND comment_id = :comment_id; ';
+    $data = array(
+        'user_id' => $relevance['user_id'],
+        'comment_id' => $relevance['comment_id'],
+    );
+
+    $stmt = $pdo->prepare($sql);
+    if ($stmt->execute($data)) {
+    }
+    return $relevance;
+}

@@ -1,35 +1,8 @@
-
-Skip to content
-
-Pull requests
-Issues
-Marketplace
-Explore
-
-@Gblondel1991
-
-0
-0
-
-0
-
-Gblondel1991/Simelius
-Code
-Issues 0
-Pull requests 0
-Projects 0
-Wiki
-Insights
-Settings
-Simelius/PHP/Simelius/views/default/homepage.phtml
-7b151a4 a day ago
-@Gblondel1991 Gblondel1991 collapse bootstrap
-189 lines (175 sloc) 8.55 KB
 <?php if (!isset($_SESSION['user'])) {
     header('Location: login.php');
 } else ?>
 <!-- Deux div pour centrer verticalement la popin sur la page -->
-<div class="table-popin">
+<div class="table-popin" xmlns="http://www.w3.org/1999/html">
     <div class="center-popin">
 
         <header>
@@ -53,10 +26,17 @@ Simelius/PHP/Simelius/views/default/homepage.phtml
         <div class="sidenavleft sidenav nunito">
             <?php foreach ($category as $cat) : ?>
                 <div class="sideBarContent">
-                    <a href="#about" class="color-blank" class="category">
+                    <span class="categoryFilter color-blank <?=$cat['name']?>">
                         <?= $cat['name']; ?>
-                    </a>
+                    </span>
                 </div>
+                <script>
+                    $('.<?=$cat['name']?>').click(function(){
+                        $('.post').hide(1000);
+                        $('.category<?=$cat['name']?>').show(1000);
+
+                    });
+                </script>
             <?php endforeach;?>
         </div>
 
@@ -110,7 +90,11 @@ Simelius/PHP/Simelius/views/default/homepage.phtml
         </div>
         <?php foreach ($articles as $article) : ?>
             <?php $experience= experience($article['experience'])?>
-            <div class="post nunito">
+            <div class="post nunito <?php $categories = explode(',', $article['categories']); ?>
+                        <?php foreach ($categories as $category) : ?>
+                         category<?= $category ?>
+            <?php endforeach ;?>
+">
                 <h3 class="titrePost merienda">
                     <?= $article['title'] ?>
                 </h3>
@@ -147,11 +131,14 @@ Simelius/PHP/Simelius/views/default/homepage.phtml
 
                 <form class="commentForm" name="commentForm" action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
                     <textarea name="content" onkeyup="auto_grow(this)" id="comment" class="writeAnswer nunito form-control" placeholder="Mon commentaire..."></textarea>
-                    <input type="hidden" name="article_id" value="<?= $article['article_id'] ?>">
+                    <input class="commentButton" type="hidden" name="article_id" value="<?= $article['article_id'] ?>">
                 </form>
 
                 <?php  $comments = getComments($db, $article['article_id']); ?>
+                <?php $articleRelevance = getArticleRelevance($db, $article['article_id']); ?>
                 <?php foreach ($comments as $comment) : ?>
+                    <?php $relevance = getRelevance($db, $comment['comment_id']) ;?>
+                <?php $commentRelevance = getCommentRelevance($db, $comment['comment_id']) ; ?>
                     <?php $experience= experience($comment['experience'])?>
 
                     <div class="showComments showComments<?= $article['article_id']?>">
@@ -176,17 +163,34 @@ Simelius/PHP/Simelius/views/default/homepage.phtml
                             <span class="date nunito">Posté le
                                 <?= (new DateTime($comment['created_at']))->format('d/m/Y à H:i'); ?>
                             </span>
-                                <span class="note float-right">++
-                                <i class="fas fa-chart-line"></i> 8</span>
+                                <?php if (empty($relevance) OR (!in_array($_SESSION['user']['user_id'],$relevance ))):?>
+                                <form class="noteComment float-right" method="post" action="<?= BASE_URL . DS . 'relevance.php' ?>">
+                                <span class="note "><button type="submit" class="relevance">++</button>
+                                <i class="fas fa-chart-line"></i> <?= $commentRelevance['count(*)'] ?></span>
+                                    <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
+                                </form>
+                                <?php elseif (in_array($_SESSION['user']['user_id'],$relevance )) : ?>
+                                <form class="noteComment float-right" method="post" action="<?= BASE_URL . DS . 'deleteRelevance.php' ?>">
+                                <span class="note "><button type="submit" class="relevance">- -</button>
+                                <i class="fas fa-chart-line"></i> <?= $commentRelevance['count(*)'] ?></span>
+                                    <input type="hidden" name="comment_id" value="<?= $relevance['comment_id'] ?>">
+                                </form>
+                                <?php endif ; ?>
                             </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
                 <div class="answers">
+                    <?php if (!empty($comments)) : ?>
                     <span class="showAnswers" id="showAnswers<?= $article['article_id']?>">
                         Afficher les réponses
-                        <span class="pertinence" data-toggle="tooltip" data-placement="right" title="Taux de pertinence"><i class="fas fa-chart-line"></i> 17</span>
+                        <span class="pertinence" data-tooltip="Taux de pertinence"><i class="fas fa-chart-line"></i> <?= $articleRelevance['count(*)'] ?></span>
                     </span>
+                    <?php else : ?>
+                    <span class="showAnswers" id="showAnswers<?= $article['article_id']?>">
+                        Actuellement sans réponse
+                     </span>
+                    <?php endif ;?>
                 </div>
             </div>
 
@@ -209,6 +213,7 @@ Simelius/PHP/Simelius/views/default/homepage.phtml
             this.form.submit();
         }
     });
+
     function auto_grow(element) {
         element.style.height = "5px";
         element.style.height = (element.scrollHeight) + "px";
