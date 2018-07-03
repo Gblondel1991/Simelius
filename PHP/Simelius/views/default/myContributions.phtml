@@ -18,7 +18,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="#">Mon profil</a>
-                        <a class="dropdown-item" href="<?=BASE_URL?>/myContributions.php">Mes contributions</a>
+                        <a class="dropdown-item" href="#">Mes contributions</a>
                         <a class="dropdown-item" href="#">Mes réponses</a>
                         <a class="dropdown-item" href="#">J'ai jugé pertinent</a>
                         <div class="dropdown-divider"></div>
@@ -60,18 +60,9 @@
             </div>
         </div>
         <div class="main">
-            <h3 class="page-title merienda center-text">Nous sommes</h3>
-            <div id="resultat"></div>
-            <h2 class="merienda center-text">
-                <?= $user['name'] ?>s</h2>
+            
             <form method="post" class="addPost">
-                <div class="newPost">
 
-                    <textarea onkeyup="auto_grow(this)" name="content" class="form-control write nunito" placeholder="Je partage mon expérience, fais appel à la communauté..."></textarea>
-                    <a href="#popin1">
-                        <div class="postButton nunito color-blank">Contribuer</div>
-                    </a>
-                </div>
                 <div class="smart-popin" id="popin1">
                     <div class="sp-table">
                         <div class="sp-cell">
@@ -216,32 +207,32 @@
         var e = e || window.event;
         var k = e.keyCode || e.which;
         if (k == 13 && !e.shiftKey) {
-          this.form.submit();
+            this.form.submit();
         }
     });
 
- /*   $(document).ready(function(){
-        $(".commentForm").submit(function(e) {
-            e.preventDefault();
-            var answer= $(this).find('.writeAnswer').val();
-            var article_id = $(this).find('#article_id').val();
-            $.post(
-                '/Simelius/comment.php', {
-                    article_id: article_id,
-                    content : answer,
-                },
-                function(data){
-                    if(data === 'Success'){
-                        $("#comments"+article_id).append().html("<p>answer</p>");
-                    }
-                    else{
-                        $("#resultat").html("<p>Erreur...</p>");
-                    }
-                },
-                'text'
-            );
-        });
-    }); */
+    /*   $(document).ready(function(){
+           $(".commentForm").submit(function(e) {
+               e.preventDefault();
+               var answer= $(this).find('.writeAnswer').val();
+               var article_id = $(this).find('#article_id').val();
+               $.post(
+                   '/Simelius/comment.php', {
+                       article_id: article_id,
+                       content : answer,
+                   },
+                   function(data){
+                       if(data === 'Success'){
+                           $("#comments"+article_id).append().html("<p>answer</p>");
+                       }
+                       else{
+                           $("#resultat").html("<p>Erreur...</p>");
+                       }
+                   },
+                   'text'
+               );
+           });
+       }); */
 
     function auto_grow(element) {
         element.style.height = "5px";

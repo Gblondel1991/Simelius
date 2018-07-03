@@ -29,7 +29,6 @@ textarea {
     background-color: rgba(79, 111, 163, 0.5);
     position: fixed;
     width: 100%;
-    z-index: 1;
 }
 
 a {
@@ -83,6 +82,10 @@ ul {
 
 /* ***********************************body******************************** */
 
+.space {
+    margin-bottom: 2%;
+}
+
 body {
     background-attachment: fixed;
     background-size: cover;
@@ -132,7 +135,6 @@ h2 {
     flex-direction: column;
     justify-content: space-around;
     -webkit-transition: background-color 1s;
-    z-index: 999999;
 }
 
 .sidenav:hover {
@@ -404,7 +406,7 @@ a:link
 }
 
 . {
-margin-top: 5%
+    margin-top: 5%
 }
 
 .writeAnswer {
