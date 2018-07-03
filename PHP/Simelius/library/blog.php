@@ -102,6 +102,42 @@ function getComments ($pdo, $article_id) {
     return $comments;
 }
 
+function getUserComments($pdo, $user_id) {
+    $sql = 'SELECT 
+        a.article_id,
+        a.user_id,
+        a.title,
+        a.content,
+        a.created_at,
+        a.updated_at,
+        a.`status`,
+        c.`name`,
+        u.lastname,
+        u.firstname,
+        u.email,
+        u.experience,
+		GROUP_CONCAT(c.name) as categories
+		from article as a 
+		RIGHT JOIN comment as co 
+		ON a.article_id = co.article_id
+        LEFT JOIN article_has_category as ac
+		ON ac.article_id = a.article_id
+		LEFT JOIN category as c
+		ON ac.category_id = c.category_id
+		JOIN user as u
+        ON a.user_id = u.user_id
+		WHERE co.user_id = 7
+        GROUP BY a.article_id
+		ORDER BY a.created_at DESC;';
+
+    $stmt =$pdo->prepare($sql);
+    $articles = [];
+    if ($stmt->execute(array($user_id))) {
+        $articles = $stmt->fetchall(PDO::FETCH_ASSOC);
+    }
+    return $articles;
+}
+
 function getCategories(PDO $pdo) {
     $sql = 'SELECT category_id, name FROM category ORDER BY name;';
     $stmt = $pdo->prepare($sql);
