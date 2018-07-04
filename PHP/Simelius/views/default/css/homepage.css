@@ -332,6 +332,18 @@ a:link
     border-radius: 10px;
 }
 
+.fa-trash-alt {
+    font-size: 18px;
+    color: rgba(79, 111, 163, 1);
+    cursor: pointer;
+}
+
+.fa-edit {
+    font-size: 18px;
+    color: rgba(79, 111, 163, 1);
+    cursor: pointer;
+}
+
 .date {
     font-size: 0.8rem;
     margin-top: 2%
@@ -456,6 +468,28 @@ textarea {
     background: floralwhite;
     box-shadow: 0px 0px 5px rgb(143, 198, 219);
     transition: 1s;
+}
+
+.deleteArticleForm {
+    display: inline;
+}
+
+.deleteArticleButton {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.delete_comment {
+    font-size: 16px;
+    color: rgba(79, 111, 163, 1);
+    cursor: pointer;
+}
+
+.update_comment {
+    font-size: 16px;
+    color: rgba(79, 111, 163, 1);
+    cursor: pointer;
 }
 
 .showComments {

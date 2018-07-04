@@ -96,7 +96,7 @@
         </div>
         <?php foreach ($articles as $article) : ?>
             <?php $experience= experience($article['experience'])?>
-            <div class="post nunito <?php $categories = explode(',', $article['categories']); ?>
+            <div id="principale" class="post nunito <?php $categories = explode(',', $article['categories']); ?>
                         <?php foreach ($categories as $category) : ?>
                          category<?= $category ?>
             <?php endforeach ;?>
@@ -104,6 +104,15 @@
                 <h3 class="titrePost merienda">
                     <?= $article['title'] ?>
                 </h3>
+                <?php if ($_SESSION['user']['user_id'] == $article['user_id']) : ?>
+                <span class="float-right">
+                    <span><i class="far fa-edit"></i></span>
+                    <form class="deleteArticleForm" method="post" action="<?= BASE_URL . DS . 'deleteArticle.php'?>">
+                        <button class="deleteArticleButton" type="submit"><i class="fas fa-trash-alt"></i></button>
+                        <input type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
+                    </form>
+                </span>
+                <?php endif; ?>
                 <br>
                 <div class="categoryPost">
                     <?php if(isset($article['categories'])) : ?>
@@ -160,6 +169,12 @@
                                 <?php else : ?>
                                     <?= $experience[0]?> ans et
                                     <?= $experience[1]?> jours d'expérience
+                                <?php endif; ?>
+                                <?php if ($_SESSION['user']['user_id'] == $article['user_id']) : ?>
+                                    <span class="float-right">
+                    <span><i class="far fa-edit update_comment"></i></span>
+                    <span><i class="fas fa-trash-alt delete_comment"></i></span>
+                </span>
                                 <?php endif; ?>
                             </div>
                             <div class="commentcontent nunito">
@@ -219,6 +234,37 @@
           this.form.submit();
         }
     });
+
+    ////////////////////////////////////Fonction scroll//////////////////////////////////
+    /*
+        rowPrincipale = $('#principale');// à renomer pour indiquer l'emplacement de la div ou il y a les articles
+        comptage = 0;
+
+        chargement(); //chargement des 10 premieres post
+
+        function chargement(){ //charge 10 post
+
+            for(i=0;i<=9;i++){
+                getArticle(comptage);
+                comptage++;
+            }
+        };
+
+        function getArticle(number) {
+            var xhttp;
+            xhttp = new XMLHttpRequest();
+            alert(number);
+            xhttp.open("GET",  "/Simelius/homepage.php?n="+number, true);//changer le lien pour accedder à getarticles.php
+            rowPrincipale.innerHTML = xhttp.send();
+        }
+
+        $(window).scroll(function() {//verifie qu'on est en bas de page
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+
+                chargement();
+            }
+        });
+        */
 
  /*   $(document).ready(function(){
         $(".commentForm").submit(function(e) {
