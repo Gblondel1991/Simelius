@@ -487,16 +487,32 @@ textarea {
     background: none;
 }
 
-.delete_comment {
+.deleteCommentForm {
+    display: inline;
+}
+
+.deleteCommentIcon {
     font-size: 16px;
     color: rgba(79, 111, 163, 1);
     cursor: pointer;
 }
 
-.update_comment {
+.deleteCommentButton {
+    border: none;
+    background: none;
+}
+
+.updateComment {
     font-size: 16px;
     color: rgba(79, 111, 163, 1);
     cursor: pointer;
+}
+
+.updateCommentContent {
+    border-radius: 15px;
+    background: floralwhite;
+    width: 80%;
+    display: none;
 }
 
 .showComments {

@@ -247,6 +247,25 @@ function deleteComment($pdo, $comment_id) {
         return $comments;
     }}
 
+function updateComment($pdo, $updateComment) {
+    $sql = 'UPDATE comment SET
+                content = ?,
+                updated_at = NOW()
+                WHERE comment_id = ?;';
+
+    $stmt =$pdo->prepare($sql);
+
+    $dataComment = array(
+        $updateComment['content'],
+        $updateComment['comment_id']
+    );
+
+    if ($stmt->execute($dataComment)) {
+        return true;
+    }
+    return false;
+}
+
 /////////////////////////////////////Relevance/////////////////////////////////////
 function getRelevance($pdo, $comment_id) {
     $sql="SELECT * FROM revelant_answer WHERE comment_id = ?";

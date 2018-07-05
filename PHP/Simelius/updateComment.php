@@ -4,10 +4,10 @@ require LIB_PATH . DS . 'user.php';
 require LIB_PATH . DS . 'blog.php';
 
 $comment_id = $_POST['comment_id'] ?? null ;
+$content = $_POST['content'] ?? null;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $comment = $_POST;
-    $comment['user_id'] = $_SESSION['user']['user_id'];
-    deleteComment($db, $comment_id);
+    $updateComment = $_POST;
+    updateComment($db, $updateComment);
     header("Location: ".$_SERVER['HTTP_REFERER']);
 }

@@ -3,9 +3,9 @@ require 'init.php';
 require LIB_PATH . DS . 'user.php';
 require LIB_PATH . DS . 'blog.php';
 
-$articleId = $_POST['article_id'] ?? null ;
+$comment_id = $_POST['comment_id'] ?? null ;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    deleteArticle($db, $articleId);
+    deleteArticle($db, $comment_id);
     header("Location: ".$_SERVER['HTTP_REFERER']);
 }
