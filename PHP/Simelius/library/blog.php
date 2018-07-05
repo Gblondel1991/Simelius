@@ -129,6 +129,27 @@ function deleteArticle($pdo, $article_id) {
         return $articles;
 }}
 
+function updateArticle($pdo, $updatedArticle) {
+    $sql = 'UPDATE article SET
+                content = ?,
+                updated_at = NOW()
+                WHERE article_id  = ?;';
+
+    $stmt =$pdo->prepare($sql);
+
+    $dataArticle = array(
+        $updatedArticle['content'],
+        $updatedArticle['article_id']
+    );
+
+    if ($stmt->execute($dataArticle)) {
+    return true;
+    }
+
+    return false;
+}
+
+
 
 ///////////////////////////////////////Comments//////////////////////////////////////////
 ///

@@ -3,11 +3,11 @@ require 'init.php';
 require LIB_PATH . DS . 'user.php';
 require LIB_PATH . DS . 'blog.php';
 
-$comment_id = $_POST['comment_id'] ?? null ;
+$article_id = $_POST['article_id'] ?? null ;
+$content = $_POST['content'] ?? null;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $comment = $_POST;
-    $comment['user_id'] = $_SESSION['user']['user_id'];
-    deleteArticle($db, $articleId);
+    $updatedArticle = $_POST;
+    updateArticle($db, $updatedArticle);
     header("Location: ".$_SERVER['HTTP_REFERER']);
 }

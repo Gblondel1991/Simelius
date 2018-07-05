@@ -9,6 +9,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $relevance = $_POST;
     $relevance['user_id'] = $_SESSION['user']['user_id'];
     if (deleteRelevance($db, $relevance)) {
-        header('Location: homepage.php');
+        header("Location: ".$_SERVER['HTTP_REFERER']);
     }
 }

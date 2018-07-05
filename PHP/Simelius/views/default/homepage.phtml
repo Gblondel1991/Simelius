@@ -106,7 +106,7 @@
                 </h3>
                 <?php if ($_SESSION['user']['user_id'] == $article['user_id']) : ?>
                 <span class="float-right">
-                    <span><i class="far fa-edit"></i></span>
+                    <i class="far fa-edit updateArticle" id="updateArticle<?= $article['article_id']?>"></i>
                     <form class="deleteArticleForm" method="post" action="<?= BASE_URL . DS . 'deleteArticle.php'?>">
                         <button class="deleteArticleButton" type="submit"><i class="fas fa-trash-alt"></i></button>
                         <input type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
@@ -136,13 +136,24 @@
                         <?= $experience[1]?> jours d'expérience
                     <?php endif; ?>
                 </div>
-                <div class="content">
+                <form class="updateArticleForm" method="post" action="<?= BASE_URL . DS . 'updateArticle.php'?>">
+                    <textarea name="content" onkeyup="auto_grow(this)"  class="updateArticleContent form-control" placeholder="<?= $article['content'] ?>"></textarea>
+                    <input type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
+                </form>
+
+                <div class="articleContent">
                     <?= $article['content'] ?>
                     <br>
                 </div>
+                <?php if (isset($article['updated_at'])) : ?>
+                <div class="date nunito">Modifié le
+                    <?= (new DateTime($article['updated_at']))->format('d/m/Y à H:i'); ?>
+                </div>
+                <?php else: ?>
                 <div class="date nunito">Posté le
                     <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i'); ?>
                 </div>
+                <?php endif;?>
 
                 <form class="commentForm" name="commentForm" action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
                     <textarea name="content" onkeyup="auto_grow(this)"  class="writeAnswer nunito form-control commentContent" placeholder="Mon commentaire..."></textarea>
@@ -219,6 +230,10 @@
                 $('#showAnswers<?= $article['article_id']?>').click(function(){
                     $('.showComments<?= $article['article_id']?>').slideToggle(200)
                 });
+
+
+
+
             </script>
         <?php endforeach ;?>
 
@@ -227,11 +242,31 @@
 </body>
 
 <script type="text/javascript">
+    $('.post').find('.updateArticle').click(function() {
+            $(this).parent().parent().find('.articleContent').hide(300);
+            $(this).parent().parent().find('.updateArticleContent').show(500);
+            $(this).parent().parent().find('.updateArticleContent').focus();
+        }
+    );
+
+    $('.post').find('.updateArticleContent').blur(function() {
+        $(this).hide(300);
+        $(this).parent().parent().find('.articleContent').show(900);
+    });
+
     $('.commentForm').find('.writeAnswer').keyup(function (e) {
         var e = e || window.event;
         var k = e.keyCode || e.which;
         if (k == 13 && !e.shiftKey) {
           this.form.submit();
+        }
+    });
+
+    $('.updateArticleForm').find('.updateArticleContent').keyup(function (e) {
+        var e = e || window.event;
+        var k = e.keyCode || e.which;
+        if (k == 13 && !e.shiftKey) {
+            this.form.submit();
         }
     });
 

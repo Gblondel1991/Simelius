@@ -378,10 +378,17 @@ a:link
     margin-top: 0.8%
 }
 
-.content {
+.articleContent {
     font-size: 1rem;
     margin-top: 0.8%;
     border-bottom: black;
+}
+
+.updateArticleContent {
+    border-radius: 15px;
+    background: floralwhite;
+    width: 80%;
+    display: none;
 }
 
 .post > .answers {

@@ -11,6 +11,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $comment = $_POST;
     $comment['user_id'] = $_SESSION['user']['user_id'];
     if (addComment($db, $comment)) {
-        header('Location: homepage.php');
+        header("Location: ".$_SERVER['HTTP_REFERER']);
     }
 }

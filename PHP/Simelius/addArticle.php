@@ -16,14 +16,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newArticle = $_POST;
     $newArticle['user_id'] = $_SESSION['user']['user_id'];
     if (addArticle($db, $newArticle)) {
-        header('Location: homepage.php');
+        header("Location: ".$_SERVER['HTTP_REFERER']);
         exit;
     }
 }
-
-
-
-
-
-
-include THEME_PATH . DS . 'homepage.phtml';
