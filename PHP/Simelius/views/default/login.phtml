@@ -11,28 +11,28 @@
 </head>
 
 <body>
-<div class="website-content">
     <header>
-        <nav class="color-blank nunito">
-            <a href="#" class="simeliusName merienda color-blank">
-                <img class="logoSimelius" src="http://www.efrei.fr/wp-content/uploads/2015/07/logo-Entraide.png" alt="Logo Simelius">Simelius</a>
-            <form method="POST" class="logForm">
-                <div class="inputMargin">
-                <input class="inputLog" type="mail" name="email" id="email" placeholder="Adresse mail">
-                <input class="inputLog" type="password" name="password" id="password" placeholder="Mot de passe">
-                </div>
+        <nav class="navbar navbar-light">
+            <a class="navbar-brand" href="<?=BASE_URL?>/homepage.php">
+                <img class="logoSimelius" src="http://www.efrei.fr/wp-content/uploads/2015/07/logo-Entraide.png" alt="Logo Simelius"><span class="simeliusName merienda">Simelius</span>
+            </a>
+            <?php if (!empty($errors)) : ?>
+                <?php foreach ($errors as $err) : ?>
+                    <span class="mb-0 errLog alert alert-danger"><?= $err; ?></span>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <form class="mb-0 form-inline form-group loginForm" method="post" action="<?= BASE_URL . DS . 'login.php'?>">
+                <input class="form-control inputLog mr-2" type="mail" name="email" id="email" placeholder="Adresse mail">
+                <input class="form-control inputLog mr-2" type="password" name="password" id="password" placeholder="Mot de passe">
                 <button type="submit" class="button connexionButton">Connexion</button>
             </form>
         </nav>
     </header>
 
-    <?php if (!empty($errors)) : ?>
-        <?php foreach ($errors as $err) : ?>
-            <div class="errLog alert alert-danger"><?= $err; ?></div>
-        <?php endforeach; ?>
-    <?php endif; ?>
+    <div class="title">
     <h1 class="Simelius">Simelius</h1>
     <h2>Ensemble, soyons meilleur</h2>
+    </div>
     <a href="#popin1">
         <button class="button inscriptionButton">Rejoindre la communauté</button>
     </a>

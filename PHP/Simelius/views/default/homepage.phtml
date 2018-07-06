@@ -110,6 +110,9 @@
                         <button class="deleteArticleButton" type="submit"><i class="fas fa-trash-alt"></i></button>
                         <input type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
                     </form>
+                    <div class="deleteArticleConfirm" title="Contact form">
+                        <p>appear now</p>
+                    </div>
                     <i class="far fa-edit updateArticle" id="updateArticle<?= $article['article_id']?>"></i>
                 </span>
                 <?php endif; ?>
@@ -212,7 +215,7 @@
                                 <?php if (empty($relevance) OR (!in_array($_SESSION['user']['user_id'],$relevance ))):?>
                                     <form class="noteComment float-right addRelevance" method="post" action="<?= BASE_URL . DS . 'relevance.php' ?>">
                                 <span class="note"><button type="submit" class="relevance"><i class="fas fa-angle-double-up"></i></button>
-                                <i class="fas fa-chart-line"></i> <?= $commentRelevance['count(*)'] ?></span>
+                                <i class="fas fa-chart-line relevanceComment"></i> <?= $commentRelevance['count(*)'] ?></span>
                                         <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
                                     </form>
                                 <?php elseif (in_array($_SESSION['user']['user_id'],$relevance )) : ?>
@@ -229,7 +232,7 @@
                 <div class="answers">
                     <?php if (!empty($comments)) : ?>
                         <span class="showAnswers" id="showAnswers<?= $article['article_id']?>">
-                        Afficher les réponses
+                            <p class="showAnswersContent">Afficher les réponses</p>
                         <span class="pertinence" data-tooltip="Taux de pertinence"><i class="fas fa-chart-line"></i> <?= $articleRelevance['count(*)'] ?></span>
                     </span>
                     <?php else : ?>
@@ -239,16 +242,6 @@
                     <?php endif ;?>
                 </div>
             </div>
-
-            <script>
-                $('#showAnswers<?= $article['article_id']?>').click(function(){
-                    $('.showComments<?= $article['article_id']?>').slideToggle(200)
-                });
-
-
-
-
-            </script>
         <?php endforeach ;?>
 
     </div>
@@ -256,8 +249,20 @@
 </body>
 
 <script type="text/javascript">
+    $('.post').find('.showAnswers').click(function () {
+        if ($(this).parent().parent().find('.showComments').is(":visible") === false) {
+            $(this).parent().parent().find('.showComments').slideDown(400);
+            $(this).parent().parent().find('.showAnswersContent').text('Masquer les réponses')
+        }
+    else if
+            ($(this).parent().parent().find('.showComments').is(":visible") === true) {
+            $(this).parent().parent().find('.showComments').slideUp(400);
+            $(this).parent().parent().find('.showAnswersContent').text('Afficher les réponses')
+        }
+      });
+
     $('.post').find('.updateArticle').click(function() {
-            $(this).parent().parent().find('.articleContent').hide(300);
+            $(this).parent().parent().find('.articleContent').slideUp(500);
             $(this).parent().parent().find('.updateArticleContent').show(900);
             $(this).parent().parent().find('.updateArticleContent').focus();
         }
@@ -269,7 +274,7 @@
     });
 
     $('.post').find('.updateComment').click(function () {
-        $(this).parent().parent().parent().parent().find('.commentcontent').hide(300);
+        $(this).parent().parent().parent().parent().find('.commentcontent').slideUp(500);
         $(this).parent().parent().parent().parent().find('.updateCommentContent').show(900);
         $(this).parent().parent().parent().parent().find('.updateCommentContent').focus();
     });

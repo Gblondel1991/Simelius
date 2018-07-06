@@ -1,0 +1,16 @@
+Présentation
+	Contexte
+		Equipe
+		Concurrence
+		Légitimité
+		Attentes populatiopns (vidéos interviews sur utilisation des réseaux sociaux pros)
+	
+
+	Projet
+		Usecase (cas utilisateur)
+		Technologies utilisées (Côté client, côté serveur)
+		Cheminement pour finalité 
+		
+		
+		Retours utilisateurs (attentes initiales après présentation, finalité après utilisation)
+		Fonctionnalités supplémentaires

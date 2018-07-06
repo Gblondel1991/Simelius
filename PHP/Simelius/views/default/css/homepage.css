@@ -79,6 +79,14 @@ ul {
     background: whitesmoke;
 }
 
+.loginForm {
+    display: inline;
+}
+
+.inputLog {
+    display: inline;
+}
+
 /* ***********************************body******************************** */
 
 .space {
@@ -404,6 +412,10 @@ a:link
     color: rgb(79, 111, 163)
 }
 
+.showAnswersContent {
+    display: inline;
+}
+
 .showAnswers:hover {
     cursor: pointer;
 }
@@ -487,6 +499,10 @@ textarea {
     background: none;
 }
 
+.deleteArticleConfirm {
+    display: none;
+}
+
 .deleteCommentForm {
     display: inline;
 }
@@ -539,13 +555,21 @@ textarea {
 }
 
 .relevance {
-    font-size: 0.7rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    background: rgba(79, 111, 163, 0.8);
-    color: white;
+    background: none;
+    color: rgba(79, 111, 163, 0.8);
     border-radius : 20px;
     border : none;
     display: inline;
+}
+
+.relevanceComment {
+    font-size: 0.9rem;
+}
+
+.revelanceJauge {
+    font-size: 0.9rem;
 }
 
 .noteComment {

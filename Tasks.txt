@@ -1,0 +1,16 @@
+Requêtes SQL
+Suppression articles - commentaires
+
+Navbar	
+	Barr de recherches
+
+Images
+
+Popin
+
+Requêtes Ajax
+	Commentaires
+	Likes (Ergonomie des 2 requêtes SQL)
+	Load more
+
+Admin
