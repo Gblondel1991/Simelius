@@ -1,5 +1,5 @@
 $(document).ready(function () {
-$('#email').on('input', function (event) {
+    $('#registerMail').on('input', function (event) {
 var email = event.target.value;
 if (email.length > 3) {
 $.ajax({

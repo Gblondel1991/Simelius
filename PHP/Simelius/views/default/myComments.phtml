@@ -12,11 +12,11 @@
                 <input type="text" class="searchBar form-control nunito" placeholder="Rechercher">
                 <div class="dropleft show">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="./images/Pikachu.png" alt="profile-picture" class="nunito profile-picture">
+                        <img src="<?=$user['profile_picture']?>" alt="profile-picture" class="nunito profile-picture">
                         <p class="user"><?= $user['firstname'] ; ?></p>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Mon profil</a>
+                        <a class="dropdown-item" href="<?=BASE_URL?>/userProfile.php">Mon profil</a>
                         <a class="dropdown-item" href="<?=BASE_URL?>/myContributions.php">Mes contributions</a>
                         <a class="dropdown-item" href="<?=BASE_URL?>/myComments.php">Mes réponses</a>
                         <a class="dropdown-item" href="<?=BASE_URL?>/myRelevances.php">J'ai jugé pertinent</a>
@@ -84,160 +84,11 @@
                     </div>
             </form>
         </div>
-        <?php foreach ($articles as $article) : ?>
-            <?php $experience= experience($article['experience'])?>
-            <div class="post nunito <?php $categories = explode(',', $article['categories']); ?>
-                        <?php foreach ($categories as $category) : ?>
-                         category<?= $category ?>
-            <?php endforeach ;?>
-">
-                <h3 class="titrePost merienda">
-                    <?= $article['title'] ?>
-                </h3>
-                <br>
-                <div class="categoryPost">
-                    <?php if(isset($article['categories'])) : ?>
-                        <?php $categories = explode(',', $article['categories']); ?>
-                        <?php foreach ($categories as $category) : ?>
-
-                            <button class="categoryBadge"><?= $category ?></button>
-                        <?php endforeach ;?>
-                    <?php endif; ?>
-                </div>
-                <div class="poster">
-                    <img src="" alt="image" />
-                    <?= $article['firstname'] . ' '. $article['lastname']?>,
-                    <?php if ($experience[0]<1) : ?>
-                        <?= $experience[1]?> jours d'expérience
-                    <?php elseif ($experience[0]=1) : ?>
-                        <?= $experience[0]?> an et
-                        <?= $experience[1]?> jours d'expérience
-                    <?php else : ?>
-                        <?= $experience[0]?> ans et
-                        <?= $experience[1]?> jours d'expérience
-                    <?php endif; ?>
-                </div>
-                <div class="content">
-                    <?= $article['content'] ?>
-                    <br>
-                </div>
-                <div class="date nunito">Posté le
-                    <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i'); ?>
-                </div>
-
-                <form class="commentForm" name="commentForm" action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
-                    <textarea name="content" onkeyup="auto_grow(this)"  class="writeAnswer nunito form-control commentContent" placeholder="Mon commentaire..."></textarea>
-                    <input class="commentButton commentArticleId" type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
-                </form>
-
-                <?php  $comments = getComments($db, $article['article_id']); ?>
-                <?php $articleRelevance = getArticleRelevance($db, $article['article_id']); ?>
-                <?php foreach ($comments as $comment) : ?>
-                    <?php $relevance = getRelevance($db, $comment['comment_id']) ;?>
-                    <?php $commentRelevance = getCommentRelevance($db, $comment['comment_id']) ; ?>
-                    <?php $experience= experience($comment['experience'])?>
-
-                    <div class="showComments showComments<?= $article['article_id']?>" id="showComments<?= $article['article_id']?>">
-                        <div class="comments" id="comments<?= $article['article_id']?>">
-                            <div class="commentposter nunito">
-                                <?= $comment['firstname']?>
-                                <?= $comment['lastname']?>,
-                                <?php if ($experience[0]<1) : ?>
-                                    <?= $experience[1]?> jours d'expérience
-                                <?php elseif ($experience[0]=1) : ?>
-                                    <?= $experience[0]?> an et
-                                    <?= $experience[1]?> jours d'expérience
-                                <?php else : ?>
-                                    <?= $experience[0]?> ans et
-                                    <?= $experience[1]?> jours d'expérience
-                                <?php endif; ?>
-                            </div>
-                            <div class="commentcontent nunito">
-                                <?= $comment['content'] ?>
-                            </div>
-                            <div class="date">
-                            <span class="date nunito">Posté le
-                                <?= (new DateTime($comment['created_at']))->format('d/m/Y à H:i'); ?>
-                            </span>
-                                <?php if (empty($relevance) OR (!in_array($_SESSION['user']['user_id'],$relevance ))):?>
-                                    <form class="noteComment float-right addRelevance" method="post" action="<?= BASE_URL . DS . 'relevance.php' ?>">
-                                <span class="note"><button type="submit" class="relevance">++</button>
-                                <i class="fas fa-chart-line"></i> <?= $commentRelevance['count(*)'] ?></span>
-                                        <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
-                                    </form>
-                                <?php elseif (in_array($_SESSION['user']['user_id'],$relevance )) : ?>
-                                    <form class="noteComment float-right" method="post" action="<?= BASE_URL . DS . 'deleteRelevance.php' ?>">
-                                <span class="note "><button type="submit" class="relevance">- -</button>
-                                <i class="fas fa-chart-line"></i> <?= $commentRelevance['count(*)'] ?></span>
-                                        <input type="hidden" name="comment_id" value="<?= $relevance['comment_id'] ?>">
-                                    </form>
-                                <?php endif ; ?>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-                <div class="answers">
-                    <?php if (!empty($comments)) : ?>
-                        <span class="showAnswers" id="showAnswers<?= $article['article_id']?>">
-                        Afficher les réponses
-                        <span class="pertinence" data-tooltip="Taux de pertinence"><i class="fas fa-chart-line"></i> <?= $articleRelevance['count(*)'] ?></span>
-                    </span>
-                    <?php else : ?>
-                        <span class="showAnswers" id="showAnswers<?= $article['article_id']?>">
-                        Actuellement sans réponse
-                     </span>
-                    <?php endif ;?>
-                </div>
-            </div>
-
-            <script>
-                $('#showAnswers<?= $article['article_id']?>').click(function(){
-                    $('.showComments<?= $article['article_id']?>').slideToggle(200)
-                });
-            </script>
-        <?php endforeach ;?>
+        <?php include THEME_PATH . DS .'articles.phtml'?>
 
     </div>
 </div>
 </body>
 
-<script type="text/javascript">
-    $('.commentForm').find('.writeAnswer').keyup(function (e) {
-        var e = e || window.event;
-        var k = e.keyCode || e.which;
-        if (k == 13 && !e.shiftKey) {
-            this.form.submit();
-        }
-    });
-
-    /*   $(document).ready(function(){
-           $(".commentForm").submit(function(e) {
-               e.preventDefault();
-               var answer= $(this).find('.writeAnswer').val();
-               var article_id = $(this).find('#article_id').val();
-               $.post(
-                   '/Simelius/comment.php', {
-                       article_id: article_id,
-                       content : answer,
-                   },
-                   function(data){
-                       if(data === 'Success'){
-                           $("#comments"+article_id).append().html("<p>answer</p>");
-                       }
-                       else{
-                           $("#resultat").html("<p>Erreur...</p>");
-                       }
-                   },
-                   'text'
-               );
-           });
-       }); */
-
-    function auto_grow(element) {
-        element.style.height = "5px";
-        element.style.height = (element.scrollHeight) + "px";
-    };
-
-</script>
-
+<script src="<?= BASE_URL ?>/views/<?= THEME ?>/js/articles.js">
 </html>

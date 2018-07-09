@@ -136,7 +136,7 @@ footer {
 
 .button {
     color:antiquewhite;
-    background: rgb(95, 137, 206);
+    background: rgba(79, 111, 163, 1);
     cursor: pointer;
     border-radius: 10px;
     font-family: 'Nunito', sans-serif;
@@ -144,7 +144,7 @@ footer {
 
 .button:hover {
     cursor: pointer;
-    background-color: rgb(125, 168, 237);
+    background-color: rgb(144, 173, 221);
     -webkit-transition: background-color 1s
 }
 
@@ -160,9 +160,9 @@ footer {
     bottom: 12%;
     position: fixed;
     -webkit-transition: background-color 0.5s;
-    border-radius: 20px;
-    width: 25%;
-    left: 37.5%;
+    border-radius: 25px;
+    width: 30%;
+    left: 35%;
 }
 
 /* *****************************************Popin******************************************** */
@@ -202,14 +202,16 @@ body {
     transition: all 0.7s ease;
 }
 .smart-popin .sp-body {
-    background-color: antiquewhite;
+    background-color: rgba(234, 243, 249, 1);
     border-radius: 15px;
+    z-index: 1;
     padding: 2em;
     -webkit-box-shadow: 0 3px 5px 1px rgba(0,0,0,0.25);
     box-shadow: 0 3px 5px 1px rgba(0,0,0,0.25);
-    width: 33%;
-    min-width: 300px;
+    width: 40%;
     margin: 0 auto;
+    min-width: 300px;
+    font-size: 1rem;
 }
 
 .smart-popin .sp-table {
@@ -244,14 +246,25 @@ body {
     text-decoration: none;
 }
 
+.inputRegister {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.invalid-feedback {
+    margin-bottom: 10px;
+}
+
 .submitButton {
     font-size: 1rem;
-    padding: 7px 25px;
-    width: 60%;
+    padding: 12px 25px;
+    width: 50%;
     background: rgb(95, 137, 206);
     margin-top:5%;
-    border-radius: 10px;
-    -webkit-transition: background-color 0.5s
+    border-radius: 20px;
+    -webkit-transition: background-color 0.5s;
 }
 
 .submitButton:hover {

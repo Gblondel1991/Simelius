@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Merienda+One|Nanum+Gothic" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="<?= CSS_PATH . DS . 'login.css' ?>">
-</head>
-
-<body>
     <header>
         <nav class="navbar navbar-light">
             <a class="navbar-brand" href="<?=BASE_URL?>/homepage.php">
@@ -22,7 +9,7 @@
                 <?php endforeach; ?>
             <?php endif; ?>
             <form class="mb-0 form-inline form-group loginForm" method="post" action="<?= BASE_URL . DS . 'login.php'?>">
-                <input class="form-control inputLog mr-2" type="mail" name="email" id="email" placeholder="Adresse mail">
+                <input class="form-control inputLog mr-2 email" type="email" name="email" id="email" placeholder="Adresse mail">
                 <input class="form-control inputLog mr-2" type="password" name="password" id="password" placeholder="Mot de passe">
                 <button type="submit" class="button connexionButton">Connexion</button>
             </form>
@@ -43,12 +30,32 @@
                 <div class="sp-body">
                     <a href="#" class="sp-close">×</a>
                     <div class="centre">
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto similique ratione, natus nesciunt eius accusantium dignissimos rerum doloribus recusandae animi architecto ex, vitae debitis odit ducimus officiis. Dolore, velit a?
-                        </p>
+                        <form method="POST" action="<?=BASE_URL . DS . 'register.php' ?>" class="registerForm" enctype="multipart/form-data">
+                            <?php if (!empty($errors)) : ?>
+                                <?php foreach ($errors as $err) : ?>
+                                    <div class="alert alert-danger"><?= $err; ?></div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            <div class="form-group">
+                            <input class="form-control inputRegister" type="text" name="lastname" id="lastname" placeholder="Nom">
+                            <input class="form-control inputRegister" type="text" name="firstname" id="firstname" placeholder="Prénom">
+                            <select class="form-control inputRegister" name="profession_id">
+                                <?php foreach ($professionfromdb as $prof) :?>
+                                    <option value="<?= $prof['profession_id']?>"><?= $prof['name']?></option>
+                                <?php endforeach ?>
+                            </select>
+                                <label for="email" class="sr-only">Email</label>
+                                <input class="form-control inputRegister" type="email" name="email" id="registerMail" placeholder="Adresse mail" value="<?= $email; ?>" required autofocus>
+                                <div id="hasUser" class="invalid-feedback form-text">Cette adresse mail est déjà utilisée.
+                                </div>
+                            <input class="form-control inputRegister" type="password" name="password" id="password" placeholder="Mot de passe">
+                            <input class="form-control inputRegister" type="password" name="password2" id="password2" placeholder="Vérification du mot de passe">
+                            <input class="form-control inputRegister" placeholder="J'ai commencé à exercer..." type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="birthday" id="date">
+                                <input class="form-control inputRegister" type="file" id="monfichier" name="profile_picture" >
 
-                        <button class="submitButton nunito text-color"><a href="sign up.html"> Je rejoins la communauté</a></button>
-
+                                <button class="submitButton nunito color-blank"> Je rejoins la communauté</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -64,5 +71,5 @@
 
 </div>
 </body>
-
+    <script src="<?= BASE_URL ?>/views/<?= THEME ?>/js/register.js"></script>
 </html>

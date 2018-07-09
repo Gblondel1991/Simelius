@@ -1,9 +1,6 @@
 <?php if (!isset($_SESSION['user'])) {
     header('Location: login.php');
 } else ?>
-<!-- Deux div pour centrer verticalement la popin sur la page -->
-<div class="table-popin" xmlns="http://www.w3.org/1999/html">
-    <div class="center-popin">
         <header>
             <nav class="navbar navbar-light ">
                 <a class="navbar-brand" href="<?=BASE_URL?>/homepage.php">
@@ -58,37 +55,16 @@
                 <a href="#contact" class="color-blank" class="event">Miaou</a>
             </div>
         </div>
-        <div class="main">
 
-            <form method="post" class="addPost">
-
-                <div class="smart-popin" id="popin1">
-                    <div class="sp-table">
-                        <div class="sp-cell">
-                            <div class="sp-body nunito">
-                                <a href="#" class="sp-close">×</a>
-                                <input type="text" name="title" placeholder="Mon titre" class="form-control postTitle nunito">
-                                <p class="addCategories">On pourra retrouver ma contribution dans les catégories...</p>
-                                <?php foreach ($category as $cat) : ?>
-                                    <div>
-                                        <input name="category[]" type="checkbox" value="<?= $cat['category_id']; ?>" id="c1" />
-                                        <label for="c1">
-                                            <?= $cat['name']; ?>
-                                        </label>
-                                    </div>
-                                <?php endforeach;?>
-                                <button type="submit" class="validButton nunito color-blank">Je valide</button>
-                            </div>
-
-                        </div>
-                    </div>
-            </form>
-        </div>
-        <?php include THEME_PATH . DS .'articles.phtml'?>
+        <img src="<?= $user['profile_picture']?>" alt="Photo de profil" width="400" class="profile-picture-userProfile push-3 mt6">
+<div class="userInformations">
+    <div class="name-userProfile mt-3">
+    <?= $user['firstname'] . ' ' . $user['lastname']?>
     </div>
 </div>
+
 </body>
 
 <script src="<?= BASE_URL ?>/views/<?= THEME ?>/js/articles.js">
 
-</html>
+    </html>

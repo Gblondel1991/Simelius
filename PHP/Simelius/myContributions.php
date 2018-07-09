@@ -8,6 +8,6 @@ $articles = getUserArticles($db, $_SESSION['user']['user_id']);
 $category = getCategories($db);
 
 $title = "Mes Contributions";
-$styles = ['views/'.THEME.'/css/myContributions.css'];
+$styles = ['views/'.THEME.'/css/homepage.css'];
 include THEME_PATH . DS .'header.phtml' ;
 include THEME_PATH . DS . 'myContributions.phtml';

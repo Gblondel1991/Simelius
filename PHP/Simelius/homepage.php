@@ -6,7 +6,6 @@ require LIB_PATH . DS . 'blog.php';
 $user = getUserInformations($db, $_SESSION['user']['user_id']);
 $articles = getArticles($db, $_SESSION['user']['profession_id']);
 
-$title = 'Nouvel article';
 $category = getCategories($db);
 $inputTitle = $_POST['title'] ?? null;
 $content = $_POST['content'] ?? null;

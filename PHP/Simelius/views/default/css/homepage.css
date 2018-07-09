@@ -53,6 +53,8 @@ a {
 .profile-picture {
     width: 40px;
     display: inline;
+    border-radius: 100%;
+    border: solid 0.1rem rgba(144, 173, 221, 0.7);
 }
 
 .username {
@@ -653,4 +655,24 @@ a:hover {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
     opacity: 1;
+}
+
+
+
+
+.profile-picture-userProfile {
+    width: 15%;
+    display: inline;
+    border-radius: 100%;
+    border: solid 0.1rem rgba(144, 173, 221, 0.7);
+    margin-top: 8%;
+    margin-left: 42.5%;
+}
+
+.userInformations {
+    text-align: center;
+}
+
+.name-userProfile {
+    font-size: 2rem;
 }

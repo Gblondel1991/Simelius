@@ -1,0 +1,151 @@
+<?php foreach ($articles as $article) : ?>
+    <?php $experience= experience($article['experience'])?>
+    <div id="principale" class="post nunito <?php $categories = explode(',', $article['categories']); ?>
+                        <?php foreach ($categories as $category) : ?>
+                         category<?= $category ?>
+            <?php endforeach ;?>
+">
+        <h3 class="titrePost merienda">
+            <?= $article['title'] ?>
+        </h3>
+        <?php if ($_SESSION['user']['user_id'] == $article['user_id']) : ?>
+            <span class="float-right">
+                    <form class="deleteArticleForm" method="post" action="<?= BASE_URL . DS . 'deleteArticle.php'?>">
+                        <button class="deleteArticleButton" type="submit"><i class="fas fa-trash-alt"></i></button>
+                        <input type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
+                    </form>
+                    <div class="deleteArticleConfirm" title="Contact form">
+                        <p>appear now</p>
+                    </div>
+                    <i class="far fa-edit updateArticle" id="updateArticle<?= $article['article_id']?>"></i>
+                </span>
+        <?php endif; ?>
+        <br>
+        <div class="categoryPost">
+            <?php if(isset($article['categories'])) : ?>
+                <?php $categories = explode(',', $article['categories']); ?>
+                <?php foreach ($categories as $category) : ?>
+
+                    <button class="categoryBadge"><?= $category ?></button>
+                <?php endforeach ;?>
+            <?php endif; ?>
+        </div>
+        <div class="poster">
+            <img src="<?= $article['profile_picture']?>" class="profile-picture" alt="image" />
+            <?= $article['firstname'] . ' '. $article['lastname']?>,
+            <?php if ($experience[0]<1) : ?>
+                <?= $experience[1]?> jours d'expérience
+            <?php elseif ($experience[0]=1) : ?>
+                <?= $experience[0]?> an et
+                <?= $experience[1]?> jours d'expérience
+            <?php else : ?>
+                <?= $experience[0]?> ans et
+                <?= $experience[1]?> jours d'expérience
+            <?php endif; ?>
+        </div>
+        <form class="updateArticleForm" method="post" action="<?= BASE_URL . DS . 'updateArticle.php'?>">
+            <textarea name="content" onkeyup="auto_grow(this)"  class="updateArticleContent form-control" placeholder="<?= $article['content'] ?>"></textarea>
+            <input type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
+        </form>
+
+        <div class="articleContent">
+            <?= $article['content'] ?>
+            <br>
+        </div>
+        <?php if (isset($article['updated_at'])) : ?>
+            <div class="date nunito">Modifié le
+                <?= (new DateTime($article['updated_at']))->format('d/m/Y à H:i'); ?>
+            </div>
+        <?php else: ?>
+            <div class="date nunito">Posté le
+                <?= (new DateTime($article['created_at']))->format('d/m/Y à H:i'); ?>
+            </div>
+        <?php endif;?>
+
+        <form class="commentForm" name="commentForm" action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
+            <textarea name="content" onkeyup="auto_grow(this)"  class="writeAnswer nunito form-control commentContent" placeholder="Mon commentaire..."></textarea>
+            <input class="commentButton commentArticleId" type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
+        </form>
+
+        <?php  $comments = getComments($db, $article['article_id']); ?>
+        <?php $articleRelevance = getArticleRelevance($db, $article['article_id']); ?>
+        <?php foreach ($comments as $comment) : ?>
+            <?php $relevance = getRelevance($db, $comment['comment_id']) ;?>
+            <?php $commentRelevance = getCommentRelevance($db, $comment['comment_id']) ; ?>
+            <?php $experience= experience($comment['experience'])?>
+
+            <div class="showComments showComments<?= $article['article_id']?>" id="showComments<?= $article['article_id']?>">
+                <div class="comments" id="comments<?= $article['article_id']?>">
+                    <div class="commentposter nunito">
+                        <img src="<?= $comment['profile_picture']?>" class="profile-picture" ?>
+                        <?= $comment['firstname']?>
+                        <?= $comment['lastname']?>,
+                        <?php if ($experience[0]<1) : ?>
+                            <?= $experience[1]?> jours d'expérience
+                        <?php elseif ($experience[0]=1) : ?>
+                            <?= $experience[0]?> an et
+                            <?= $experience[1]?> jours d'expérience
+                        <?php else : ?>
+                            <?= $experience[0]?> ans et
+                            <?= $experience[1]?> jours d'expérience
+                        <?php endif; ?>
+                        <?php if ($_SESSION['user']['user_id'] == $comment['user_id']) : ?>
+                        <span class="float-right">
+                   <span class="float-right">
+                    <form class="deleteCommentForm" method="post" action="<?= BASE_URL . DS . 'deleteComment.php'?>">
+                        <button class="deleteCommentButton" type="submit"><i class="deleteCommentIcon fas fa-trash-alt"></i></button>
+                        <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
+                    </form>
+                    <i class="far fa-edit updateComment"></i>
+                </span>
+                            <?php endif; ?>
+                    </div>
+                    <form class="updateCommentForm" method="post" action="<?= BASE_URL . DS . 'updateComment.php'?>">
+                        <textarea name="content" onkeyup="auto_grow(this)"  class="updateCommentContent form-control" placeholder="<?= $comment['content'] ?>"></textarea>
+                        <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
+                    </form>
+                    <div class="commentcontent nunito">
+                        <?= $comment['content'] ?>
+                    </div>
+                    <div class="date">
+                        <?php if (isset($comment['updated_at'])) : ?>
+                            <span class="date nunito">Modifié le
+                                <?= (new DateTime($comment['updated_at']))->format('d/m/Y à H:i'); ?>
+                                    </span>
+                        <?php else: ?>
+                            <span class="date nunito">Posté le
+                                <?= (new DateTime($comment['created_at']))->format('d/m/Y à H:i'); ?>
+                            </span>
+                        <?php endif ;?>
+                        <?php if (empty($relevance) OR (!in_array($_SESSION['user']['user_id'],$relevance ))):?>
+                            <form class="noteComment float-right addRelevance" method="post" action="<?= BASE_URL . DS . 'relevance.php' ?>">
+                                <span class="note"><button type="submit" class="relevance"><i class="fas fa-angle-double-up"></i></button>
+                                <i class="fas fa-chart-line relevanceComment"></i> <?= $commentRelevance['count(*)'] ?></span>
+                                <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
+                            </form>
+                        <?php elseif (in_array($_SESSION['user']['user_id'],$relevance )) : ?>
+                            <form class="noteComment float-right" method="post" action="<?= BASE_URL . DS . 'deleteRelevance.php' ?>">
+                                <span class="note "><button type="submit" class="relevance"><i class="fas fa-angle-double-down"></i></button>
+                                <i class="fas fa-chart-line"></i> <?= $commentRelevance['count(*)'] ?></span>
+                                <input type="hidden" name="comment_id" value="<?= $relevance['comment_id'] ?>">
+                            </form>
+                        <?php endif ; ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        <div class="answers">
+            <?php if (!empty($comments)) : ?>
+                <span class="showAnswers" id="showAnswers<?= $article['article_id']?>">
+                            <p class="showAnswersContent">Afficher les réponses</p>
+                        <span class="pertinence" data-tooltip="Taux de pertinence"><i class="fas fa-chart-line"></i> <?= $articleRelevance['count(*)'] ?></span>
+                    </span>
+            <?php else : ?>
+                <span class="showAnswers" id="showAnswers<?= $article['article_id']?>">
+                        Actuellement sans réponse
+                     </span>
+            <?php endif ;?>
+        </div>
+    </div>
+<?php endforeach ;?>
+<script src="<?= BASE_URL ?>/views/<?= THEME ?>/js/articles.js">

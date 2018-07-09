@@ -19,4 +19,5 @@ define('THEME_PATH', VIEWS_PATH . DS . THEME);
 define('BASE_URL', '/Simelius');
 
 define('IMAGES_PATH', THEME_PATH . DS . 'images');
+define('AVATARS_PATH', IMAGES_PATH . DS . 'avatars');
 define ('CSS_PATH', THEME_PATH . DS . 'css');

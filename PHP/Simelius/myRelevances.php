@@ -8,6 +8,6 @@ $articles = getUserRelevances($db, $_SESSION['user']['user_id']);
 $category = getCategories($db);
 
 $title = "Mes réponses pertinentes";
-$styles = ['views/'.THEME.'/css/myrelevances.css'];
+$styles = ['views/'.THEME.'/css/homepage.css'];
 include THEME_PATH . DS .'header.phtml' ;
 include THEME_PATH . DS . 'myRelevances.phtml';
