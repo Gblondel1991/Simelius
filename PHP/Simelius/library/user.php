@@ -21,8 +21,8 @@ function authenticate(PDO $pdo, $email, $password) {
     return false;
 }
 
-function register (PDO $pdo, $profession, $lastname, $firstname, $email, $password, $experience, $profile_picture) {
-    $sql = 'INSERT INTO user VALUES (:user_id, :profession_id, :lastname, :firstname, :email, :password, :experience, :created_at, :profile_picture)';
+function register (PDO $pdo, $profession, $lastname, $firstname, $email, $password, $society, $experience, $profile_picture) {
+    $sql = 'INSERT INTO user VALUES (:user_id, :profession_id, :lastname, :firstname, :email, :password, :society, :experience, :created_at, :profile_picture)';
 
     $stmt = $pdo->prepare($sql);
     $data = [
@@ -32,6 +32,7 @@ function register (PDO $pdo, $profession, $lastname, $firstname, $email, $passwo
         'firstname' => $firstname,
         'email' => $email,
         'password' => password_hash($password, PASSWORD_BCRYPT),
+        'society' => $society,
         'experience' => $experience,
         'created_at' => date('Y-m-d H:i:s'),
         'profile_picture' => $profile_picture
@@ -60,8 +61,11 @@ function getUserInformations (PDO $pdo, $user_id) {
           u.firstname,
           u.lastname,
           u.profession_id,
+          u.society,
           u.experience,
           u.profile_picture,
+          u.email,
+          u.created_at,
           p.name
           FROM profession as p
           JOIN user as u

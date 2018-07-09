@@ -32,7 +32,7 @@
         </div>
         <div class="poster">
             <img src="<?= $article['profile_picture']?>" class="profile-picture" alt="image" />
-            <?= $article['firstname'] . ' '. $article['lastname']?>,
+            <?= $article['firstname'] . ' '. $article['lastname'] . ', ' . $article['society'] . ', '?>
             <?php if ($experience[0]<1) : ?>
                 <?= $experience[1]?> jours d'expérience
             <?php elseif ($experience[0]=1) : ?>
@@ -80,6 +80,7 @@
                         <img src="<?= $comment['profile_picture']?>" class="profile-picture" ?>
                         <?= $comment['firstname']?>
                         <?= $comment['lastname']?>,
+                        <?= $comment['society'] ?>,
                         <?php if ($experience[0]<1) : ?>
                             <?= $experience[1]?> jours d'expérience
                         <?php elseif ($experience[0]=1) : ?>

@@ -13,8 +13,7 @@ $birthday = $_POST['birthday'] ?? null;
 $password = $_POST['password'] ?? null;
 $password2 = $_POST['password2'] ?? null;
 $experience = $_POST['birthday'] ?? null;
-
-var_dump($_FILES);
+$society = $_POST['society'] ?? null;
 
 if (!empty($_FILES)) {
     $profile_picture = $_FILES['profile_picture'];
@@ -69,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = strip_tags($email);
         $password = strip_tags($password);
 
-        if (register($db, $profession, $lastname, $firstname, $email, $password, $experience, $profile_picture) === 1) {
+        if (register($db, $profession, $lastname, $firstname, $email, $password, $society, $experience, $profile_picture) === 1) {
             //echo $db->lastInsertId();
             $user = authenticate($db, $email, $password);
             if ($user) {

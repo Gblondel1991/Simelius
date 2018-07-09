@@ -3,6 +3,7 @@ require 'init.php';
 require LIB_PATH . DS . 'user.php';
 
 $user = getUserInformations($db, $_SESSION['user']['user_id']);
+$experience= experience($user['experience']);
 
 $title = "Accueil";
 $styles = ['views/'.THEME.'/css/homepage.css'];

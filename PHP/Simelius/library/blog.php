@@ -15,6 +15,7 @@ function getArticles ($pdo, $profession_id) {
         u.lastname,
         u.firstname,
         u.email,
+        u.society,
         u.experience,
         u.profile_picture,
         p.profession_id,
@@ -55,6 +56,7 @@ function getUserArticles ($pdo, $user_id) {
         u.lastname,
         u.firstname,
         u.email,
+        u.society,
         u.experience,
         u.profile_picture,
         p.profession_id,
@@ -166,6 +168,7 @@ function getComments ($pdo, $article_id) {
             co.is_activated,
             u.firstname,
             u.lastname,
+            u.society,
             u.experience,
             u.profile_picture
             FROM comment as co
@@ -196,6 +199,7 @@ function getUserComments($pdo, $user_id) {
         u.lastname,
         u.firstname,
         u.email,
+        u.society,
         u.experience,
         u.profile_picture,
 		GROUP_CONCAT(c.name) as categories
@@ -350,8 +354,10 @@ function getUserRelevances($pdo, $user_id) {
         u.lastname,
         u.firstname,
         u.email,
+        u.society,
         u.profile_picture,
-        u.experience,GROUP_CONCAT(c.name) as categories
+        u.experience,
+        GROUP_CONCAT(c.name) as categories
 		FROM revelant_answer as ra
         JOIN comment as co
         ON ra.comment_id = co.comment_id

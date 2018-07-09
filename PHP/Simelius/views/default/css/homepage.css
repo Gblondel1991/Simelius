@@ -666,7 +666,6 @@ a:hover {
     border-radius: 100%;
     border: solid 0.1rem rgba(144, 173, 221, 0.7);
     margin-top: 8%;
-    margin-left: 42.5%;
 }
 
 .userInformations {
@@ -675,4 +674,54 @@ a:hover {
 
 .name-userProfile {
     font-size: 2rem;
+}
+
+.society-userProfile {
+    font-size: 1.3rem;
+}
+
+
+
+.updateUserInformationsButton {
+    font-size: 1rem;
+    padding: 10px 25px;
+    width: 20%;
+    background: rgba(79, 111, 163, 0.8);
+    border-radius: 20px;
+    -webkit-transition: background-color 0.5s
+}
+
+.updateUserInformationsButton:hover {
+    cursor: pointer;
+    background-color: rgb(144, 173, 221);
+    -webkit-transition: background-color 1s
+}
+
+.updateUserInformationsForm {
+    display: none;
+}
+
+.updateUserInformationsValidButton {
+    font-size: 1rem;
+    padding: 10px 25px;
+    width: 40%;
+    margin-left: 30%;
+    background: rgba(79, 111, 163, 0.8);
+    border-radius: 20px;
+    -webkit-transition: background-color 0.5s
+}
+
+.updateUserInformationsValidButton:hover {
+    cursor: pointer;
+    background-color: rgb(144, 173, 221);
+    -webkit-transition: background-color 1s
+}
+
+.updateUserInformationsForm {
+    position: fixed;
+    left: 35%;
+    margin-top: 12%;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
 }

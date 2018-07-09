@@ -10,7 +10,7 @@
                 <div class="dropleft show">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="<?=$user['profile_picture']?>" alt="profile-picture" class="nunito profile-picture">
-                        <p class="user"><?= $user['firstname'] ; ?></p>
+                        <p class="user"><?= $user['firstname'] . ' ' . $user['lastname']; ?></p>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="<?=BASE_URL?>/userProfile.php">Mon profil</a>
@@ -56,15 +56,57 @@
             </div>
         </div>
 
-        <img src="<?= $user['profile_picture']?>" alt="Photo de profil" width="400" class="profile-picture-userProfile push-3 mt6">
 <div class="userInformations">
+        <img src="<?= $user['profile_picture']?>" alt="Photo de profil" width="400" class="profile-picture-userProfile nunito push-3 mt6">
     <div class="name-userProfile mt-3">
     <?= $user['firstname'] . ' ' . $user['lastname']?>
     </div>
+    <div class="society-userProfile mt-3">
+        <?= $user['society'] ?>
+    </div>
+    <div class="mt-3">
+    <?php if ($experience[0]<1) : ?>
+                            <?= $experience[1]?> jours d'expérience
+                        <?php elseif ($experience[0]=1) : ?>
+                            <?= $experience[0]?> an et
+                            <?= $experience[1]?> jours d'expérience
+                        <?php else : ?>
+                            <?= $experience[0]?> ans et
+                            <?= $experience[1]?> jours d'expérience
+                        <?php endif; ?>
+    </div>
+    <div class="mt-3">
+        <?=$user['email']?>
+    </div>
+    <button class="updateUserInformationsButton nunito color-blank mt-3">Modifier mes informations</button>
 </div>
+<div class="updateUserInformationsForm">
+<form method="POST" action="<?=BASE_URL . DS . 'updateUserInformations.php' ?>"  enctype="multipart/form-data">
+    <?php if (!empty($errors)) : ?>
+        <?php foreach ($errors as $err) : ?>
+            <div class="alert alert-danger"><?= $err; ?></div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <div class="form-group">
+        <input class="form-control mt-2" type="text" name="lastname" id="lastname" value="<?=$user['lastname']?>">
+        <input class="form-control mt-2" type="text" name="firstname" id="firstname" value="<?=$user['firstname'] ?>">
+        <label for="email" class="sr-only">Email</label>
+        <input class="form-control mt-2" type="email" name="email" id="registerMail" value="<?= $user['email']; ?>" required autofocus>
+        <div id="hasUser" class="invalid-feedback form-text">Cette adresse mail est déjà utilisée.
+        </div>
+        <input class="form-control mt-2" type="password" name="password" id="password" placeholder="Nouveau mot de passe">
+        <input class="form-control mt-2" type="password" name="password2" id="password2" placeholder="Vérification du mot de passe">
+        <input class="form-control mt-2" type="text" name="society" id="firstname" value="<?=$user['society'] ?>">
+        <input class="form-control mt-2" placeholder="J'ai commencé à exercer..." type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="birthday" id="date" value="<?= $user['experience']?>">
+        <input class="form-control mt-2" type="file" id="monfichier" name="profile_picture" value="<?= $user['profile_picture']?>">
+
+        <button class="updateUserInformationsValidButton nunito color-blank mt-4"> Je valide</button>
+    </div>
+</div>
+</form>
 
 </body>
 
-<script src="<?= BASE_URL ?>/views/<?= THEME ?>/js/articles.js">
-
+<script src="<?= BASE_URL ?>/views/<?= THEME ?>/js/userProfile.js">
+    </script>
     </html>
