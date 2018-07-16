@@ -24,22 +24,28 @@
             </nav>
         </header>
 
-        <div class="sidenavleft sidenav nunito">
-            <?php foreach ($category as $cat) : ?>
-                <div class="sideBarContent">
-                    <span class="categoryFilter color-blank <?=$cat['name']?>">
-                        <?= $cat['name']; ?>
-                    </span>
-                </div>
-                <script>
-                    $('.<?=$cat['name']?>').click(function(){
-                        $('.post').hide(1000);
-                        $('.category<?=$cat['name']?>').show(1000);
-
-                    });
-                </script>
-            <?php endforeach;?>
-        </div>
+<div class="sidenavleft sidenav color-blank nunito">
+    <div class="sideBarContent">
+        <?php if (($userArticlesCount['count(*)'] + $userCommentsCount['count(*)'] + $userRelevanceRate['COUNT(comment_id)']) <50) : ?>
+            Jeune membre
+        <?php elseif (($userArticlesCount['count(*)'] + $userCommentsCount['count(*)'] + $userRelevanceRate['COUNT(comment_id)']) < 100) :?>
+            Membre actif
+        <?php elseif (($userArticlesCount['count(*)'] + $userCommentsCount['count(*)'] + $userRelevanceRate['COUNT(comment_id)']) < 150) :?>
+            Membre expérimenté
+        <?php elseif (($userArticlesCount['count(*)'] + $userCommentsCount['count(*)'] + $userRelevanceRate['COUNT(comment_id)']) < 200) :?>
+            Membre émérite
+        <?php endif;?>
+    </div>
+    <div class="sideBarContent">
+        <?= $userArticlesCount['count(*)'] ?> contributions
+    </div>
+    <div class="sideBarContent">
+        <?= $userCommentsCount['count(*)'] ?> réponses
+    </div>
+    <div class="sideBarContent">
+        Taux de pertinence <br> de <?= $userRelevanceRate['COUNT(comment_id)']; ?>
+    </div>
+</div>
 
         <div class="sidenavright sidenav nunito">
             <div class="sideBarContent">
@@ -81,7 +87,7 @@
     <button class="updateUserInformationsButton nunito color-blank mt-3">Modifier mes informations</button>
 </div>
 <div class="updateUserInformationsForm">
-<form method="POST" action="<?=BASE_URL . DS . 'updateUserInformations.php' ?>"  enctype="multipart/form-data">
+<form method="POST" action="<?=BASE_URL . DS . 'updateUser.php' ?>"  enctype="multipart/form-data">
     <?php if (!empty($errors)) : ?>
         <?php foreach ($errors as $err) : ?>
             <div class="alert alert-danger"><?= $err; ?></div>
@@ -96,11 +102,11 @@
         </div>
         <input class="form-control mt-2" type="password" name="password" id="password" placeholder="Nouveau mot de passe">
         <input class="form-control mt-2" type="password" name="password2" id="password2" placeholder="Vérification du mot de passe">
-        <input class="form-control mt-2" type="text" name="society" id="firstname" value="<?=$user['society'] ?>">
+        <input class="form-control mt-2" type="text" name="society" placeholder="Société" value="<?=$user['society'] ?>">
         <input class="form-control mt-2" placeholder="J'ai commencé à exercer..." type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="birthday" id="date" value="<?= $user['experience']?>">
         <input class="form-control mt-2" type="file" id="monfichier" name="profile_picture" value="<?= $user['profile_picture']?>">
 
-        <button class="updateUserInformationsValidButton nunito color-blank mt-4"> Je valide</button>
+        <button class="updateUserInformationsValidButton nunito color-blank mt-4 mb-5"> Je valide</button>
     </div>
 </div>
 </form>

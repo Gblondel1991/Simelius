@@ -81,6 +81,36 @@ function getUserInformations (PDO $pdo, $user_id) {
     return $userInformations;
 }
 
+function updateUserInformations($pdo, $updateUser) {
+    $sql = 'UPDATE user SET
+                lastname = ?,
+                firstname = ?,
+                email = ?,
+                password = ?,
+                society = ?,
+                experience = ?,
+                profile_picture = ?
+                WHERE user_id = ?;';
+
+    $stmt =$pdo->prepare($sql);
+
+    $dataComment = array(
+        $updateUser['lastname'],
+        $updateUser['firstname'],
+        $updateUser['email'],
+        $updateUser['password'],
+        $updateUser['society'],
+        $updateUser['experience'],
+        $updateUser['profile_picture'],
+        $updateUser['user_id']
+    );
+
+    if ($stmt->execute($dataComment)) {
+        return true;
+    }
+    return false;
+}
+
 function isUserExists(PDO $pdo, $email) {
     $stmt = $pdo->prepare('SELECT email FROM user WHERE email=?');
     if ($stmt->execute(array($email))) {
@@ -98,4 +128,37 @@ function experience($experienceStart) {
     $days = $experience%365;
 
     return array($years, $days);
+}
+
+function userArticlesCount($pdo, $user_id) {
+    $sql = 'SELECT count(*) FROM article WHERE user_id = ?';
+
+    $stmt =$pdo->prepare($sql);
+    $userArticlesCount = [];
+    if ($stmt->execute(array($user_id))) {
+        $userArticlesCount = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $userArticlesCount;
+}
+
+function userCommentsCount($pdo, $user_id) {
+    $sql = 'SELECT count(*) FROM comment WHERE user_id = ?';
+
+    $stmt =$pdo->prepare($sql);
+    $userCommentsCount = [];
+    if ($stmt->execute(array($user_id))) {
+        $userCommentsCount = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $userCommentsCount;
+}
+
+function getUserRelevanceRate($pdo, $user_id) {
+    $sql = 'SELECT COUNT(comment_id) from revelant_answer WHERE user_id = ?;';
+
+    $stmt =$pdo->prepare($sql);
+    $userRelevanceRate = [];
+    if ($stmt->execute(array($user_id))) {
+        $userRelevanceRate = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $userRelevanceRate;
 }

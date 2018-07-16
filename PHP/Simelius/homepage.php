@@ -5,6 +5,9 @@ require LIB_PATH . DS . 'blog.php';
 
 $user = getUserInformations($db, $_SESSION['user']['user_id']);
 $articles = getArticles($db, $_SESSION['user']['profession_id']);
+$userArticlesCount = userArticlesCount($db, $_SESSION['user']['user_id']);
+$userCommentsCount = userCommentsCount($db, $_SESSION['user']['user_id']);
+$userRelevanceRate = getUserRelevanceRate($db, $_SESSION['user']['user_id']);
 
 $category = getCategories($db);
 $inputTitle = $_POST['title'] ?? null;

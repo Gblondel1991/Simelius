@@ -1,16 +1,12 @@
-Requêtes SQL
-Suppression articles - commentaires
-
-Navbar	
-	Barr de recherches
-
-Images
-
-Popin
-
-Requêtes Ajax
+Mes infos 
+	Nombre posts
 	Commentaires
-	Likes (Ergonomie des 2 requêtes SQL)
-	Load more
+	Les réponses que j'ai jugés pertinentes
+	Mes réponses pertinentes
+	Classement
 
-Admin
+Ma communauté
+	nombres utilisateurs
+	Posts (+liste)
+	Commentaires
+	Taux de pertinence

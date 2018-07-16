@@ -381,9 +381,6 @@ function getUserRelevances($pdo, $user_id) {
     return $articles;
 }
 
-
-
-
 /////////////////////////////////////////////Categories/////////////////////////////////////////////
 function getCategories(PDO $pdo) {
     $sql = 'SELECT category_id, name FROM category ORDER BY name;';
@@ -394,4 +391,16 @@ function getCategories(PDO $pdo) {
         $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     return $categories;
+}
+
+//////////////////////////////////STATS///////////////////////////////
+function getProfessionArticlesCount($pdo, $user_id) {
+    $sql = 'SELECT count(*) FROM article as A JOIN user as u WHERE u.profession_id = ?';
+
+    $stmt =$pdo->prepare($sql);
+    $professionArticlesCount = [];
+    if ($stmt->execute(array($user_id))) {
+        $professionArticlesCount = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $professionArticlesCount;
 }
