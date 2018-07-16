@@ -8,6 +8,9 @@ $articles = getArticles($db, $_SESSION['user']['profession_id']);
 $userArticlesCount = userArticlesCount($db, $_SESSION['user']['user_id']);
 $userCommentsCount = userCommentsCount($db, $_SESSION['user']['user_id']);
 $userRelevanceRate = getUserRelevanceRate($db, $_SESSION['user']['user_id']);
+$usersCountByCommunity = getUsersCommunity($db, $_SESSION['user']['profession_id']);
+$articlesCountByCommunity = getArticlesCountByCommunity($db,$_SESSION['user']['profession_id']);
+$relevanceRateByCommunity = getRelevanceRateByCommunity($db,$_SESSION['user']['profession_id']);
 
 $category = getCategories($db);
 $inputTitle = $_POST['title'] ?? null;

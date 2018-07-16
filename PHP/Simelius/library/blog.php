@@ -31,8 +31,7 @@ function getArticles ($pdo, $profession_id) {
         ON p.profession_id = u.profession_id
         WHERE p.profession_id = ? AND A.`status`=1
         GROUP BY a.article_id
-		ORDER BY a.created_at DESC
-		LIMIT 3;';
+		ORDER BY a.created_at DESC;';
 
     $stmt =$pdo->prepare($sql);
     $articles = [];

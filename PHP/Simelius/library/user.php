@@ -162,3 +162,47 @@ function getUserRelevanceRate($pdo, $user_id) {
     }
     return $userRelevanceRate;
 }
+
+function getUsersCommunity($pdo, $profession_id) {
+    $sql = 'SELECT count(*) FROM user WHERE profession_id = ?';
+
+    $stmt =$pdo->prepare($sql);
+    $usersCountByCommunity = [];
+    if ($stmt->execute(array($profession_id))) {
+        $usersCountByCommunity = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $usersCountByCommunity;
+}
+
+function getArticlesCountByCommunity($pdo, $profession_id) {
+    $sql = 'SELECT count(*) FROM article as a JOIN `user` as u  WHERE u.profession_id = ?';
+
+    $stmt =$pdo->prepare($sql);
+    $articlesCountByCommunity = [];
+    if ($stmt->execute(array($profession_id))) {
+        $articlesCountByCommunity = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $articlesCountByCommunity;
+}
+
+function getCommentsCountByCommunity($pdo, $profession_id) {
+    $sql = 'SELECT count(*) FROM comment as a JOIN `user` as u  WHERE u.profession_id = ?';
+
+    $stmt =$pdo->prepare($sql);
+    $commentsCountByCommunity = [];
+    if ($stmt->execute(array($profession_id))) {
+        $commentsCountByCommunity = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $commentsCountByCommunity;
+}
+
+function getRelevanceRateByCommunity($pdo, $profession_id) {
+    $sql = 'SELECT COUNT(comment_id) from revelant_answer as ra JOIN `user` as u  WHERE u.profession_id = ?';
+
+    $stmt =$pdo->prepare($sql);
+    $relevanceRateByCommunity = [];
+    if ($stmt->execute(array($profession_id))) {
+        $relevanceRateByCommunity = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    return $relevanceRateByCommunity;
+}

@@ -45,18 +45,18 @@
             <?php endforeach;?>
         </div>
 
-        <div class="sidenavright sidenav nunito">
+        <div class="sidenavright sidenav color-blank nunito">
             <div class="sideBarContent">
-                <a href="#about" class="color-blank" class="event">Suicide digestif</a>
+                <?= $usersCountByCommunity['count(*)']?> <?= $user['name'] ?>s
             </div>
             <div class="sideBarContent">
-                <a href="#services" class="color-blank" class="event">Spiritisme collectif</a>
+                <?= $userArticlesCount['count(*)'] ?> contributions
             </div>
             <div class="sideBarContent">
-                <a href="#clients" class="color-blank" class="event">Sylvanothérapie</a>
+                <?= $userCommentsCount['count(*)'] ?> réponses
             </div>
             <div class="sideBarContent">
-                <a href="#contact" class="color-blank" class="event">Miaou</a>
+                Taux de pertinence <br> de <?= $relevanceRateByCommunity['COUNT(comment_id)']/3; ?>
             </div>
         </div>
         <div class="main">

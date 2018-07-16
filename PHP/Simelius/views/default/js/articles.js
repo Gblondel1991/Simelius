@@ -66,6 +66,29 @@ function auto_grow(element) {
     element.style.height = (element.scrollHeight) + "px";
 };
 
+$(document).ready(function(){
+    $(window).scroll(function(){
+        var lastID = $('.load-more').attr('lastID');
+        if(($(window).scrollTop() == $(document).height() - $(window).height()) && (lastID != 0)){
+            $.ajax({
+                type:'POST',
+                url:'/Simelius/getArticles.php',
+                data:'id='+lastID,
+                beforeSend:function(){
+                    $('.load-more').show();
+                },
+                success:function(html){
+                    $('.load-more').remove();
+                    $('#postList').append(html);
+                }
+            });
+        }
+    });
+});
+
+$(function() {
+    $('.lazy').lazy();
+});
 
 ////////////////////////////////////Fonction scroll//////////////////////////////////
 /*
