@@ -11,7 +11,7 @@
                     <img class="logoSimelius" src="http://www.efrei.fr/wp-content/uploads/2015/07/logo-Entraide.png" alt="Logo Simelius"><span class="simeliusName merienda">Simelius</span>
                 </a>
                 <form action="research.php" method="get">
-                <input name="q" type="text" class="searchBar form-control nunito" placeholder="Rechercher">
+                    <input name="q" type="text" class="searchBar form-control nunito" placeholder="Rechercher">
                 </form>
                 <div class="dropleft show">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,13 +48,13 @@
 
         <div class="sidenavright sidenav color-blank nunito">
             <div class="sideBarContent">
-                <?= $usersCountByCommunity['count(*)']?> <?= $user['name'] ?><?php if ($usersCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
+                <?= $usersCountByCommunity['count(*)']?> <?= $user['name'] ?>s
             </div>
             <div class="sideBarContent">
-                <?= $articlesCountByCommunity['count(*)'] ?> contribution<?php if ($articlesCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
+                <?= $userArticlesCount['count(*)'] ?> contributions
             </div>
             <div class="sideBarContent">
-                <?= $commentsCountByCommunity['count(*)'] ?> réponse<?php if ($commentsCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
+                <?= $userCommentsCount['count(*)'] ?> réponses
             </div>
             <div class="sideBarContent">
                 Taux de pertinence <br> de <?= $relevanceRateByCommunity['COUNT(comment_id)']; ?>

@@ -6,7 +6,9 @@
                 <a class="navbar-brand" href="<?=BASE_URL?>/homepage.php">
                     <img class="logoSimelius" src="http://www.efrei.fr/wp-content/uploads/2015/07/logo-Entraide.png" alt="Logo Simelius"><span class="simeliusName merienda">Simelius</span>
                 </a>
-                <input type="text" class="searchBar form-control nunito" placeholder="Rechercher">
+                <form action="research.php" method="get">
+                    <input name="q" type="text" class="searchBar form-control nunito" placeholder="Rechercher">
+                </form>
                 <div class="dropleft show">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="<?=$user['profile_picture']?>" alt="profile-picture" class="nunito profile-picture">
@@ -37,30 +39,30 @@
         <?php endif;?>
     </div>
     <div class="sideBarContent">
-        <?= $userArticlesCount['count(*)'] ?> contributions
+        <?= $userArticlesCount['count(*)'] ?> contribution<?php if ($userArticlesCount['count(*)'] > 1) : ?>s <?php endif; ?>
     </div>
     <div class="sideBarContent">
-        <?= $userCommentsCount['count(*)'] ?> réponses
+        <?= $userCommentsCount['count(*)'] ?> réponse<?php if ($userCommentsCount['count(*)'] > 1) : ?>s <?php endif; ?>
     </div>
     <div class="sideBarContent">
         Taux de pertinence <br> de <?= $userRelevanceRate['COUNT(comment_id)']; ?>
     </div>
 </div>
 
-        <div class="sidenavright sidenav nunito">
-            <div class="sideBarContent">
-                <a href="#about" class="color-blank" class="event">Suicide digestif</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#services" class="color-blank" class="event">Spiritisme collectif</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#clients" class="color-blank" class="event">Sylvanothérapie</a>
-            </div>
-            <div class="sideBarContent">
-                <a href="#contact" class="color-blank" class="event">Miaou</a>
-            </div>
-        </div>
+<div class="sidenavright sidenav color-blank nunito">
+    <div class="sideBarContent">
+        <?= $usersCountByCommunity['count(*)']?> <?= $user['name'] ?><?php if ($usersCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
+    </div>
+    <div class="sideBarContent">
+        <?= $articlesCountByCommunity['count(*)'] ?> contribution<?php if ($articlesCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
+    </div>
+    <div class="sideBarContent">
+        <?= $commentsCountByCommunity['count(*)'] ?> réponse<?php if ($commentsCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
+    </div>
+    <div class="sideBarContent">
+        Taux de pertinence <br> de <?= $relevanceRateByCommunity['COUNT(comment_id)']; ?>
+    </div>
+</div>
 
 <div class="userInformations">
         <img src="<?= $user['profile_picture']?>" alt="Photo de profil" width="400" class="profile-picture-userProfile nunito push-3 mt6">

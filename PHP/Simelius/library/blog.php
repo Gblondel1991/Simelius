@@ -41,6 +41,50 @@ function getArticles ($pdo, $profession_id) {
     return $articles;
 }
 
+function getArticlesByResearch ($pdo, $articles) {
+
+    $sql = 'SELECT
+		a.article_id,
+        a.user_id,
+        a.title,
+        a.content,
+        a.created_at,
+        a.updated_at,
+        a.`status`,
+        ac.category_id,
+        c.name,
+        u.lastname,
+        u.firstname,
+        u.email,
+        u.society,
+        u.experience,
+        u.profile_picture,
+        p.profession_id,
+		GROUP_CONCAT(c.name) as categories
+        FROM article as a
+        LEFT JOIN article_has_category as ac
+		ON ac.article_id = a.article_id
+        LEFT JOIN category as c
+		ON ac.category_id = c.category_id
+        JOIN user as u
+        ON a.user_id = u.user_id
+        JOIN profession as p
+        ON p.profession_id = u.profession_id
+        WHERE MATCH (title,content) AGAINST (?) AND p.profession_id = ? AND A.`status`=1
+        GROUP BY a.article_id
+		ORDER BY a.created_at DESC;';
+
+    $stmt =$pdo->prepare($sql);
+    $dataArticles = array(
+            $articles['research'],
+           $articles['profession_id'],
+    );
+    if ($stmt->execute($dataArticles)) {
+        $articles = $stmt->fetchall(PDO::FETCH_ASSOC);
+    }
+    return $articles;
+}
+
 function getUserArticles ($pdo, $user_id) {
     $sql = 'SELECT
 		a.article_id,
@@ -223,7 +267,7 @@ function getUserComments($pdo, $user_id) {
     return $articles;
 }
 
-function addComment($pdo, $comment) {
+function addComment(\PDO $pdo, $comment) {
     $sql = 'INSERT INTO comment VALUES (
             NULL,
             :user_id,

@@ -10,7 +10,9 @@
                 <a class="navbar-brand" href="<?=BASE_URL?>/homepage.php">
                     <img class="logoSimelius" src="http://www.efrei.fr/wp-content/uploads/2015/07/logo-Entraide.png" alt="Logo Simelius"><span class="simeliusName merienda">Simelius</span>
                 </a>
-                <input type="text" class="searchBar form-control nunito" placeholder="Rechercher">
+                <form action="research.php" method="get">
+                    <input name="q" type="text" class="searchBar form-control nunito" placeholder="Rechercher">
+                </form>
                 <div class="dropleft show">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="<?= $user['profile_picture'] ?>" alt="profile-picture" class="nunito profile-picture">
@@ -47,16 +49,16 @@
 
         <div class="sidenavright sidenav color-blank nunito">
             <div class="sideBarContent">
-                <?= $usersCountByCommunity['count(*)']?> <?= $user['name'] ?>s
+                <?= $usersCountByCommunity['count(*)']?> <?= $user['name'] ?><?php if ($usersCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
             </div>
             <div class="sideBarContent">
-                <?= $userArticlesCount['count(*)'] ?> contributions
+                <?= $articlesCountByCommunity['count(*)'] ?> contribution<?php if ($articlesCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
             </div>
             <div class="sideBarContent">
-                <?= $userCommentsCount['count(*)'] ?> réponses
+                <?= $commentsCountByCommunity['count(*)'] ?> réponse<?php if ($commentsCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
             </div>
             <div class="sideBarContent">
-                Taux de pertinence <br> de <?= $relevanceRateByCommunity['COUNT(comment_id)']/3; ?>
+                Taux de pertinence <br> de <?= $relevanceRateByCommunity['COUNT(comment_id)']; ?>
             </div>
         </div>
         <div class="main">
