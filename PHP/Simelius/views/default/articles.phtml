@@ -44,7 +44,7 @@
             <?php endif; ?>
         </div>
         <form class="updateArticleForm" method="post" action="<?= BASE_URL . DS . 'updateArticle.php'?>">
-            <textarea name="content" onkeyup="auto_grow(this)"  class="updateArticleContent form-control" placeholder="<?= $article['content'] ?>"></textarea>
+            <textarea name="content" onkeyup="auto_grow(this)"  class="updateArticleContent form-control"><?= $article['content'] ?></textarea>
             <input type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
         </form>
 
@@ -63,7 +63,7 @@
         <?php endif;?>
 
         <form class="commentForm" name="commentForm" action="<?= BASE_URL . DS . 'comment.php' ?>" method="POST">
-            <textarea name="content" onkeyup="auto_grow(this)"  class="writeAnswer nunito form-control commentContent" placeholder="Mon commentaire..."></textarea>
+            <textarea name="content" onkeyup="auto_grow(this)"  class="writeAnswer nunito form-control commentContent" placeholder="Mon assistance..."></textarea>
             <input class="commentButton commentArticleId" type="hidden" name="article_id" id="article_id" value="<?= $article['article_id'] ?>">
         </form>
 
@@ -102,7 +102,7 @@
                             <?php endif; ?>
                     </div>
                     <form class="updateCommentForm" method="post" action="<?= BASE_URL . DS . 'updateComment.php'?>">
-                        <textarea name="content" onkeyup="auto_grow(this)"  class="updateCommentContent form-control" placeholder="<?= $comment['content'] ?>"></textarea>
+                        <textarea name="content" onkeyup="auto_grow(this)"  class="updateCommentContent form-control" ><?= $comment['content'] ?></textarea>
                         <input type="hidden" name="comment_id" value="<?= $comment['comment_id'] ?>">
                     </form>
                     <div class="commentcontent nunito">

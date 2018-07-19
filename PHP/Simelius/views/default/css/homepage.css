@@ -29,7 +29,10 @@ textarea {
     background-color: rgba(79, 111, 163, 0.8);
     position: fixed;
     width: 100%;
+    z-index: 1;
 }
+
+.drop
 
 a {
     text-decoration: none;
@@ -79,6 +82,7 @@ ul {
 
 .dropdown-toggle {
     background: whitesmoke;
+    z-index: 1
 }
 
 .loginForm {
@@ -149,6 +153,7 @@ h2 {
 .sidenav:hover {
     background-color: rgba(79, 111, 163, 0.5);
     -webkit-transition: background-color 1s;
+    z-index: 0;
 }
 
 .sidenavleft {
@@ -171,6 +176,7 @@ h2 {
     font-size: 1.2rem;
     transition-property: font-size;
     transition-duration: 0.6s;
+    cursor: pointer;
 }
 
 .categoryFilter:hover {
@@ -724,4 +730,8 @@ a:hover {
     width: 30%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.space {
+    font-size: 0.1rem;
 }

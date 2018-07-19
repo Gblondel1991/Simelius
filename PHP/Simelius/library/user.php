@@ -45,7 +45,7 @@ return 0;
 }
 
 function getProfession (PDO $pdo) {
-    $sql = 'SELECT profession_id, name FROM profession';
+    $sql = 'SELECT profession_id, name FROM profession ORDER BY name';
     $stmt =$pdo->prepare($sql);
 
     $profession= [];
@@ -175,7 +175,7 @@ function getUsersCommunity($pdo, $profession_id) {
 }
 
 function getArticlesCountByCommunity($pdo, $profession_id) {
-    $sql = 'SELECT count(*) FROM article as a JOIN `user` as u  WHERE u.profession_id = ?';
+    $sql = 'SELECT count(*) FROM article as a JOIN `user` as u on a.user_id = u.user_id WHERE u.profession_id = ?';
 
     $stmt =$pdo->prepare($sql);
     $articlesCountByCommunity = [];
@@ -186,7 +186,7 @@ function getArticlesCountByCommunity($pdo, $profession_id) {
 }
 
 function getCommentsCountByCommunity($pdo, $profession_id) {
-    $sql = 'SELECT count(*) FROM comment as a JOIN `user` as u  WHERE u.profession_id = ?';
+    $sql = 'SELECT count(*) FROM comment as c JOIN `user` as u on c.user_id = u.user_id WHERE u.profession_id = ?';
 
     $stmt =$pdo->prepare($sql);
     $commentsCountByCommunity = [];
@@ -197,7 +197,7 @@ function getCommentsCountByCommunity($pdo, $profession_id) {
 }
 
 function getRelevanceRateByCommunity($pdo, $profession_id) {
-    $sql = 'SELECT COUNT(comment_id) from revelant_answer as ra JOIN `user` as u  WHERE u.profession_id = ?';
+    $sql = 'SELECT COUNT(comment_id) from revelant_answer as ra JOIN `user` as u on ra.user_id = u.user_id WHERE u.profession_id = ?';
 
     $stmt =$pdo->prepare($sql);
     $relevanceRateByCommunity = [];

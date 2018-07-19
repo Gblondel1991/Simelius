@@ -39,8 +39,9 @@
                             <div class="form-group">
                             <input class="form-control inputRegister" type="text" name="lastname" id="lastname" placeholder="Nom">
                             <input class="form-control inputRegister" type="text" name="firstname" id="firstname" placeholder="Prénom">
-                            <select class="form-control inputRegister" name="profession_id">
+                            <select class="form-control inputRegister" name="profession_id" title="Profession">
                                 <?php foreach ($professionfromdb as $prof) :?>
+                                <option value="">Profession</option>
                                     <option value="<?= $prof['profession_id']?>"><?= $prof['name']?></option>
                                 <?php endforeach ?>
                             </select>

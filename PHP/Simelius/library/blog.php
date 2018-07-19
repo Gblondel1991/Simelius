@@ -70,7 +70,7 @@ function getArticlesByResearch ($pdo, $articles) {
         ON a.user_id = u.user_id
         JOIN profession as p
         ON p.profession_id = u.profession_id
-        WHERE MATCH (title,content) AGAINST (?) AND p.profession_id = ? AND A.`status`=1
+        WHERE MATCH (content) AGAINST (?) AND p.profession_id = ? AND A.`status`=1
         GROUP BY a.article_id
 		ORDER BY a.created_at DESC;';
 
@@ -257,7 +257,7 @@ function getUserComments($pdo, $user_id) {
         ON a.user_id = u.user_id
 		WHERE co.user_id = ?
         GROUP BY a.article_id
-		ORDER BY a.created_at DESC;';
+		ORDER BY a.created_at;';
 
     $stmt =$pdo->prepare($sql);
     $articles = [];
@@ -438,7 +438,7 @@ function getCategories(PDO $pdo) {
 
 //////////////////////////////////STATS///////////////////////////////
 function getProfessionArticlesCount($pdo, $user_id) {
-    $sql = 'SELECT count(*) FROM article as A JOIN user as u WHERE u.profession_id = ?';
+    $sql = 'SELECT count(*) FROM article as a JOIN user as u ON a.user_id = u.user_id WHERE u.profession_id = ?';
 
     $stmt =$pdo->prepare($sql);
     $professionArticlesCount = [];

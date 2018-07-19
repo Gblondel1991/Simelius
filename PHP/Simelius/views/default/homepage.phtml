@@ -51,10 +51,10 @@
                 <?= $usersCountByCommunity['count(*)']?> <?= $user['name'] ?><?php if ($usersCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
             </div>
             <div class="sideBarContent">
-                <?= $articlesCountByCommunity['count(*)'] ?> contribution<?php if ($articlesCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
+                <?= $articlesCountByCommunity['count(*)'] ?> Contribution<?php if ($articlesCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
             </div>
             <div class="sideBarContent">
-                <?= $commentsCountByCommunity['count(*)'] ?> réponse<?php if ($commentsCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
+                <?= $commentsCountByCommunity['count(*)'] ?> Assistance<?php if ($commentsCountByCommunity['count(*)'] > 1) : ?>s <?php endif; ?>
             </div>
             <div class="sideBarContent">
                 Taux de pertinence <br> de <?= $relevanceRateByCommunity['COUNT(comment_id)']; ?>
